@@ -73,6 +73,7 @@ class Position:
     closed_at: Optional[float] = None
     realized_pnl: Optional[float] = None
     tx_enter: Optional[str] = None
+    avg_px: Optional[float] = None             # фактическая цена входа
     tp_automation_id: Optional[str] = None
     sl_automation_id: Optional[str] = None
 
