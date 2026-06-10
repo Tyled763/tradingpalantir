@@ -1,0 +1,898 @@
+{
+  "INJ": {
+    "symbol": "INJ",
+    "cmc_id": 7226,
+    "address": "0xa2b726b1145a4773f68593cf171187d8ebe4d495",
+    "pool": "0x1bdcebca3b93af70b58c41272aea2231754b23ca",
+    "pool_name": "INJ / WBNB"
+  },
+  "H": {
+    "symbol": "H",
+    "cmc_id": 36922,
+    "address": "0x44f161ae29361e332dea039dfa2f404e0bc5b5cc",
+    "pool": "0x81944a45b9ad5001c4eb721bf09b33dc381eb73dc3f5750cb98fe584b5e60e72",
+    "pool_name": "H / USDT 4%"
+  },
+  "SHIB": {
+    "symbol": "SHIB",
+    "cmc_id": 5994,
+    "address": "0x2859e4544c4bb03966803b044a93563bd2d0dd4d",
+    "pool": "0x98386f283e088ad53048376fc1c3bf2f726f775a",
+    "pool_name": "SHIB / WBNB"
+  },
+  "DOGE": {
+    "symbol": "DOGE",
+    "cmc_id": 74,
+    "address": "0xba2ae424d960c26247dd6c32edc70b295c744c43",
+    "pool": "0xce6160bb594fc055c943f59de92cee30b8c6b32c",
+    "pool_name": "DOGE / WBNB 0.25%"
+  },
+  "M": {
+    "symbol": "M",
+    "cmc_id": 35491,
+    "address": "0x22b1458e780f8fa71e2f84502cee8b5a3cc731fa",
+    "pool": "0x7122834eb38ac75c7f738bc732459f0469df82a7",
+    "pool_name": "M / USDT 0.25%"
+  },
+  "ATOM": {
+    "symbol": "ATOM",
+    "cmc_id": 3794,
+    "address": "0x0eb3a705fc54725037cc9e008bdede697f62f335",
+    "pool": "0x33dcd5381c0fd234867d5d7a49a19c009f82af4e",
+    "pool_name": "ATOM / WBNB 0.25%"
+  },
+  "AAVE": {
+    "symbol": "AAVE",
+    "cmc_id": 7278,
+    "address": "0xfb6115445bff7b52feb98650c87f44907e58f802",
+    "pool": "0x3373a22cb07cb49651b82cf6f174ef434e4dbaa8",
+    "pool_name": "AAVE / WBNB 0.3%"
+  },
+  "UNI": {
+    "symbol": "UNI",
+    "cmc_id": 7083,
+    "address": "0xbf5140a22578168fd562dccf235e5d43a02ce9b1",
+    "pool": "0x014608e87af97a054c9a49f81e1473076d51d9a3",
+    "pool_name": "UNI / WBNB"
+  },
+  "U": {
+    "symbol": "U",
+    "cmc_id": 39120,
+    "address": "0xcE24439F2D9C6a2289F741120FE202248B666666",
+    "pool": "0xa0909f81785f87f3e79309f0e73a7d82208094e4",
+    "pool_name": "U / USDT 0.01%"
+  },
+  "XRP": {
+    "symbol": "XRP",
+    "cmc_id": 52,
+    "address": "0x1d2f0da169ceb9fc7b3144628db156f3f6c60dbe",
+    "pool": "0x71f5a8f7d448e59b1ede00a19fe59e05d125e742",
+    "pool_name": "XRP / USDT 0.25%"
+  },
+  "LINK": {
+    "symbol": "LINK",
+    "cmc_id": 1975,
+    "address": "0xf8a0bf9cf54bb92f17374d9e9a321e6a111a51bd",
+    "pool": "0x0e1893beeb4d0913d26b9614b18aea29c56d94b9",
+    "pool_name": "LINK / WBNB 0.25%"
+  },
+  "TRX": {
+    "symbol": "TRX",
+    "cmc_id": 1958,
+    "address": "0xCE7de646e7208a4Ef112cb6ed5038FA6cC6b12e3",
+    "pool": "0x92a94b65b7979f6240dbae2490ddcad3c437998e",
+    "pool_name": "HTX / TRX"
+  },
+  "BCH": {
+    "symbol": "BCH",
+    "cmc_id": 1831,
+    "address": "0x8fF795a6F4D97E7887C79beA79aba5cc76444aDf",
+    "pool": "0x14cfad9a4fcb5fb4f702f5d0e90dcc633e1ded9a",
+    "pool_name": "BCH / WBNB 0.25%"
+  },
+  "FIL": {
+    "symbol": "FIL",
+    "cmc_id": 2280,
+    "address": "0x0d8ce2a99bb6e3b7db580ed848240e4a0f9ae153",
+    "pool": "0x16d7c51e9c59be9f18b19b608d53b37fa9890b8a",
+    "pool_name": "FIL / WBNB 0.05%"
+  },
+  "DOT": {
+    "symbol": "DOT",
+    "cmc_id": 6636,
+    "address": "0x7083609fce4d1d8dc0c979aab8c869ea2c873402",
+    "pool": "0x62f0546cbcd684f7c394d8549119e072527c41bc",
+    "pool_name": "DOT / WBNB 0.25%"
+  },
+  "WLFI": {
+    "symbol": "WLFI",
+    "cmc_id": 33251,
+    "address": "0x47474747477b199288bF72a1D702f7Fe0Fb1DEeA",
+    "pool": "0xba51d338a319f5e1b5da46065946576149874acf",
+    "pool_name": "WLFI / USDT 1%"
+  },
+  "DEXE": {
+    "symbol": "DEXE",
+    "cmc_id": 7326,
+    "address": "0x6E88056E8376Ae7709496Ba64d37fa2f8015ce3e",
+    "pool": "0x23ab35fac8a7ff11f0fe197df68e8ee52e415f2a",
+    "pool_name": "DEXE / USDT 0.01%"
+  },
+  "AVAX": {
+    "symbol": "AVAX",
+    "cmc_id": 5805,
+    "address": "0x1ce0c2827e2ef14d5c4f29a091d735a204794041",
+    "pool": "0x1d8b1ed9b3da5d510fd3723e0dd02476e0d7e781",
+    "pool_name": "AVAX / WBNB 0.25%"
+  },
+  "TON": {
+    "symbol": "TON",
+    "cmc_id": 11419,
+    "address": "0x76a797a59ba2c17726896976b7b3747bfd1d220f",
+    "pool": "0x819a26d0c6f3af2b9fe4e9c4bcac04fcb3ea7f2a",
+    "pool_name": "TONCOIN / USDT"
+  },
+  "ETC": {
+    "symbol": "ETC",
+    "cmc_id": 1321,
+    "address": "0x3d6545b08693dae087e957cb1180ee38b9e3c25e",
+    "pool": "0x68eb2c58987fccb77bb8d409dc02db747979f5d8",
+    "pool_name": "ETC / XVS 1%"
+  },
+  "ASTER": {
+    "symbol": "ASTER",
+    "cmc_id": 36341,
+    "address": "0x000Ae314E2A2172a039B26378814C252734f556A",
+    "pool": "0xad26ebf44e6f57db393a054f2164fb7ac54609a4",
+    "pool_name": "ASTER / BTCB 0.25%"
+  },
+  "ETH": {
+    "symbol": "ETH",
+    "cmc_id": 1027,
+    "address": "0x2170ed0880ac9a755fd29b2688956bd959f933f8",
+    "pool": "0xd0e226f674bbf064f54ab47f42473ff80db98cba",
+    "pool_name": "ETH / WBNB 0.05%"
+  },
+  "ZEC": {
+    "symbol": "ZEC",
+    "cmc_id": 1437,
+    "address": "0x1ba42e5193dfa8b03d15dd1b86a3113bbbef8eeb",
+    "pool": "0xbf3693031c272be6d539d79a9715561229a8fba9",
+    "pool_name": "ZEC / BTCB 0.3%"
+  },
+  "LTC": {
+    "symbol": "LTC",
+    "cmc_id": 2,
+    "address": "0x4338665cbb7b2485a8855a139b75d5e34ab0db94",
+    "pool": "0xe3cbe4dd1bd2f7101f17d586f44bab944091d383",
+    "pool_name": "LTC / WBNB 0.25%"
+  },
+  "ADA": {
+    "symbol": "ADA",
+    "cmc_id": 2010,
+    "address": "0x3ee2200efb3400fabb9aacf31297cbdd1d435d47",
+    "pool": "0xf7513c120b92fa4dd5cbfa78dffefcb4ced5743f",
+    "pool_name": "ADA / USDT 0.3%"
+  },
+  "NEX": {
+    "symbol": "NEX",
+    "cmc_id": 39965,
+    "address": "0x365de036a1f7dccb621530d517133521debb2013",
+    "pool": "0xae74941d0ff92e1e6c26a11fa0762ef29b87786e60daf62be00477288ec41abd",
+    "pool_name": "NEX / USDT 0.007%"
+  },
+  "FF": {
+    "symbol": "FF",
+    "cmc_id": 38482,
+    "address": "0xac23b90a79504865d52b49b327328411a23d4db2",
+    "pool": "0x9f8f4615ff5143aee365fa34f34196fb85be7650",
+    "pool_name": "FF / USDT 0.01%"
+  },
+  "B": {
+    "symbol": "B",
+    "cmc_id": 36532,
+    "address": "0x6bdcce4a559076e37755a78ce0c06214e59e4444",
+    "pool": "0xeff3a54e7ae4209c3e1bb62c6fdde7d588a595e5",
+    "pool_name": "TGT / B 1%"
+  },
+  "BTT": {
+    "symbol": "BTT",
+    "cmc_id": 16086,
+    "address": "0x352Cb5E19b12FC216548a2677bD0fce83BaE434B",
+    "pool": "0xf7c3bc007779e50b5249569acee709e9d2ce4abd",
+    "pool_name": "BTT / TUSD"
+  },
+  "STG": {
+    "symbol": "STG",
+    "cmc_id": 18934,
+    "address": "0xb0d502e938ed5f4df2e681fe6e419ff29631d62b",
+    "pool": "0x89a6be1ec107c911c3f2a1112f049f876ce033c9",
+    "pool_name": "STG / USDT 0.25%"
+  },
+  "RAY": {
+    "symbol": "RAY",
+    "cmc_id": 8526,
+    "address": "0x13b6A55662f6591f8B8408Af1C73B017E32eEdB8",
+    "pool": "0xbff5c31330b1e1c8f411fd590a1d67383cb00a3e",
+    "pool_name": "[invalid] / WBNB"
+  },
+  "PENDLE": {
+    "symbol": "PENDLE",
+    "cmc_id": 9481,
+    "address": "0xb3Ed0A426155B79B898849803E3B36552f7ED507",
+    "pool": "0x85bea4fbc57fa22b41fb1632f0d9a6a99390fd0a",
+    "pool_name": "PENDLE / WBNB 1%"
+  },
+  "SIREN": {
+    "symbol": "SIREN",
+    "cmc_id": 35766,
+    "address": "0x997a58129890bbda032231a52ed1ddc845fc18e1",
+    "pool": "0xb2af49dbf526054faf19602860a5e298a79f3d05",
+    "pool_name": "SIREN / WBNB 1%"
+  },
+  "BONK": {
+    "symbol": "BONK",
+    "cmc_id": 23095,
+    "address": "0xA697e272a73744b343528C3Bc4702F2565b2F422",
+    "pool": "0x2f74ad2c64be7dc07c9f51e9d338ecb7c1ee0b18",
+    "pool_name": "Bonk / USDT 1%"
+  },
+  "NIGHT": {
+    "symbol": "NIGHT",
+    "cmc_id": 39064,
+    "address": "0xfe930c2d63aed9b82fc4dbc801920dd2c1a3224f",
+    "pool": "0x830e213c8fe6660c21973b53317fcf1c68be774c",
+    "pool_name": "NIGHT / USDT 0.01%"
+  },
+  "LDO": {
+    "symbol": "LDO",
+    "cmc_id": 8000,
+    "address": "0x986854779804799C1d68867F5E03e601E781e41b",
+    "pool": "0xacdaada0f61661d921ca64ffaae84a4b51897449",
+    "pool_name": "LDO / WBNB"
+  },
+  "ZRO": {
+    "symbol": "ZRO",
+    "cmc_id": 26997,
+    "address": "0x6985884c4392d348587b19cb9eaaf157f13271cd",
+    "pool": "0xc241e8fb314bc3799be2db94dce4d070c29b425d",
+    "pool_name": "ZRO / WBNB 1%"
+  },
+  "FLOKI": {
+    "symbol": "FLOKI",
+    "cmc_id": 10804,
+    "address": "0xfb5b838b6cfeedc2873ab27866079ac55363d37e",
+    "pool": "0x231d9e7181e8479a8b40930961e93e7ed798542c",
+    "pool_name": "FLOKI / WBNB"
+  },
+  "LUNC": {
+    "symbol": "LUNC",
+    "cmc_id": 4172,
+    "address": "0x156ab3346823B651294766e23e6Cf87254d68962",
+    "pool": "0x34c422989df98e8369f28eb9799eac1be2df70d0",
+    "pool_name": "LUNA / USDT"
+  },
+  "EDGE": {
+    "symbol": "EDGE",
+    "cmc_id": 39720,
+    "address": "0x70f2eadf1ca1969ff42b0c78e9da519e8937cbaf",
+    "pool": "0x0c2e58fab72adad8a58db68e592b8f6922f8dafaaf0d2b394605241a7ab777ae",
+    "pool_name": "EDGE / USDT 0.007%"
+  },
+  "NFT": {
+    "symbol": "NFT",
+    "cmc_id": 9816,
+    "address": "0x20ee7b720f4e4c4ffcb00c4065cdae55271aecca",
+    "pool": "0xbeaacd47480679b754bfe62aed4b151aae887bcd",
+    "pool_name": "NFT / WBNB"
+  },
+  "PENGU": {
+    "symbol": "PENGU",
+    "cmc_id": 34466,
+    "address": "0x6418c0dd099a9fda397c766304cdd918233e8847",
+    "pool": "0x45f443892000daee3676b5ec14520f704f680bf5",
+    "pool_name": "PENGU / USDT 0.25%"
+  },
+  "CAKE": {
+    "symbol": "CAKE",
+    "cmc_id": 7186,
+    "address": "0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82",
+    "pool": "0x0ed7e52944161450477ee417de9cd3a859b14fd0",
+    "pool_name": "Cake / WBNB"
+  },
+  "BEAT": {
+    "symbol": "BEAT",
+    "cmc_id": 38837,
+    "address": "0xcf3232B85b43BCa90E51D38cc06Cc8bB8C8A3E36",
+    "pool": "0xb2842060d68177ff202e81b3bd8588630fe7ede60e1a19f4d327125f73ae92be",
+    "pool_name": "Beat / USDT 0.007%"
+  },
+  "KITE": {
+    "symbol": "KITE",
+    "cmc_id": 38828,
+    "address": "0x904567252D8F48555b7447c67dCA23F0372E16be",
+    "pool": "0xf99ac6209c0413299383fd836f878372e6398e6d9da52cee18fbccb8d9e810e0",
+    "pool_name": "KITE / USDT 0.007%"
+  },
+  "TWT": {
+    "symbol": "TWT",
+    "cmc_id": 5964,
+    "address": "0x4b0f1812e5df2a09796481ff14017e6005508003",
+    "pool": "0x8ccb4544b3030dacf3d4d71c658f04e8688e25b1",
+    "pool_name": "TWT / WBNB 0.25%"
+  },
+  "FET": {
+    "symbol": "FET",
+    "cmc_id": 3773,
+    "address": "0x031b41e504677879370e9dbcf937283a8691fa7f",
+    "pool": "0x8149b92ea743cc382aada523b68b8834733b9015",
+    "pool_name": "FET / WBNB 0.3%"
+  },
+  "PIEVERSE": {
+    "symbol": "PIEVERSE",
+    "cmc_id": 38849,
+    "address": "0x0e63b9c287e32a05e6b9ab8ee8df88a2760225a9",
+    "pool": "0xf0e72f2d5197ce10d07bfeb67cd2367d5bbfcf2a7f93a0dfa944c85939f20665",
+    "pool_name": "PIEVERSE / USDT 0.007%"
+  },
+  "AXS": {
+    "symbol": "AXS",
+    "cmc_id": 6783,
+    "address": "0x715d400f88c167884bbcc41c5fea407ed4d2f8a0",
+    "pool": "0xc2d00de94795e60fb76bc37d899170996cbda436",
+    "pool_name": "AXS / WBNB"
+  },
+  "HOME": {
+    "symbol": "HOME",
+    "cmc_id": 36133,
+    "address": "0x4bfaa776991e85e5f8b1255461cbbd216cfc714f",
+    "pool": "0xa2bbded3f749ed41800b82e9a064196bb5174286",
+    "pool_name": "HOME / WBNB 0.25%"
+  },
+  "CHEEMS": {
+    "symbol": "CHEEMS",
+    "cmc_id": 33280,
+    "address": "0x0df0587216a4a1bb7d5082fdc491d93d2dd4b413",
+    "pool": "0x38231d4ef9d33ebea944c75a21301ff6986499c3",
+    "pool_name": "Cheems / WBNB 0.25%"
+  },
+  "XCN": {
+    "symbol": "XCN",
+    "cmc_id": 18679,
+    "address": "0x7324c7C0d95CEBC73eEa7E85CbAac0dBdf88a05b",
+    "pool": "0xf8b5df35f6ef1f9ab70d1d76b32d254983af55e3",
+    "pool_name": "XCN / USDT 0.01%"
+  },
+  "RIVER": {
+    "symbol": "RIVER",
+    "cmc_id": 38417,
+    "address": "0xdA7AD9dea9397cffdDAE2F8a052B82f1484252B3",
+    "pool": "0x35c765765132d9ba94063a26d5eab98e9f005354b614d0e3f58ba1e7dc08a679",
+    "pool_name": "RIVER / USDT 0.007%"
+  },
+  "HTX": {
+    "symbol": "HTX",
+    "cmc_id": 29160,
+    "address": "0x61ec85ab89377db65762e234c946b5c25a56e99e",
+    "pool": "0x92a94b65b7979f6240dbae2490ddcad3c437998e",
+    "pool_name": "HTX / TRX"
+  },
+  "COMP": {
+    "symbol": "COMP",
+    "cmc_id": 5692,
+    "address": "0x52ce071bd9b1c4b00a0b92d298c512478cad67e8",
+    "pool": "0x0392957571f28037607c14832d16f8b653edd472",
+    "pool_name": "COMP / ETH"
+  },
+  "XPL": {
+    "symbol": "XPL",
+    "cmc_id": 36645,
+    "address": "0x405FBc9004D857903bFD6b3357792D71a50726b0",
+    "pool": "0x50203df8efcddba9755c886f086b9b2d537a15f9",
+    "pool_name": "XPL / USDT 0.01%"
+  },
+  "NXPC": {
+    "symbol": "NXPC",
+    "cmc_id": 36044,
+    "address": "0xf2b51cc1850fed939658317a22d73d3482767591",
+    "pool": "0x6ac1e2f0c6879fb53121786f523608e545640eded214b2f2e02e1edb58a7e2a0",
+    "pool_name": "NXPC / USDT 0.153%"
+  },
+  "SKYAI": {
+    "symbol": "SKYAI",
+    "cmc_id": 36300,
+    "address": "0x92aa03137385F18539301349dcfC9EbC923fFb10",
+    "pool": "0xbc42145d5a574ede9b8860fca2a49eb7b239efa5",
+    "pool_name": "SKYAI / WBNB"
+  },
+  "SFP": {
+    "symbol": "SFP",
+    "cmc_id": 8119,
+    "address": "0xd41fdb03ba84762dd66a0af1a6c8540ff1ba5dfb",
+    "pool": "0x64ebb904e169cb94e9788fcb68283b4c894ed881",
+    "pool_name": "SFP / WBNB 0.25%"
+  },
+  "SNX": {
+    "symbol": "SNX",
+    "cmc_id": 2586,
+    "address": "0x9ac983826058b8a9c7aa1c9171441191232e8404",
+    "pool": "0x8b1f1f28a8ccbaa8a8bc1582921ece97ce99d9e1",
+    "pool_name": "SNX / WBNB"
+  },
+  "BANANAS31": {
+    "symbol": "BANANAS31",
+    "cmc_id": 34118,
+    "address": "0x3d4f0513e8a29669b960f9dbca61861548a9a760",
+    "pool": "0x7f51bbf34156ba802deb0e38b7671dc4fa32041d",
+    "pool_name": "$BANANA / WBNB 0.01%"
+  },
+  "SAHARA": {
+    "symbol": "SAHARA",
+    "cmc_id": 36671,
+    "address": "0xFDFfB411C4A70AA7C95D5C981a6Fb4Da867e1111",
+    "pool": "0x7c1f9f04c87aca8364d38ffee99cd03a96d1febe",
+    "pool_name": "USD1 / SAHARA 0.01%"
+  },
+  "AB": {
+    "symbol": "AB",
+    "cmc_id": 3871,
+    "address": "0x95034f653d5d161890836ad2b6b8cc49d14e029a",
+    "pool": "0xb05500ea96db17d28cd0eb30bcb797708f279d36",
+    "pool_name": "AB / WBNB 0.01%"
+  },
+  "FORM": {
+    "symbol": "FORM",
+    "cmc_id": 23635,
+    "address": "0x5b73A93b4E5e4f1FD27D8b3F8C97D69908b5E284",
+    "pool": "0x7cb113b487e025b3a69537fca579559433240cb5",
+    "pool_name": "FORM / USDT 0.25%"
+  },
+  "IP": {
+    "symbol": "IP",
+    "cmc_id": 35626,
+    "address": "0x4d6394bc3031f751edce368c189b0e060b527107",
+    "pool": "0x6b0e74a5660ceacaa2392c9765c78bea95844cb1a87a75bbbd9fd40b0f9e0979",
+    "pool_name": "wIP / USDT 0.007%"
+  },
+  "LAB": {
+    "symbol": "LAB",
+    "cmc_id": 33223,
+    "address": "0x7ec43Cf65F1663F820427C62A5780b8f2E25593A",
+    "pool": "0x085f29091ee8a818ede960a89bd578fe4ac8e824",
+    "pool_name": "LAB / USDT 0.3%"
+  },
+  "MYX": {
+    "symbol": "MYX",
+    "cmc_id": 36410,
+    "address": "0xD82544bf0dfe8385eF8FA34D67e6e4940CC63e16",
+    "pool": "0x6ec31af1bb9a72aacec12e4ded508861b05f4503",
+    "pool_name": "MYX / WBNB 0.01%"
+  },
+  "1INCH": {
+    "symbol": "1INCH",
+    "cmc_id": 8104,
+    "address": "0x111111111117dc0aa78b770fa6a738034120c302",
+    "pool": "0xbb124e35ab9e85f8d59ba83500e559dc052b9368",
+    "pool_name": "1INCH / WBNB 0.3%"
+  },
+  "GENIUS": {
+    "symbol": "GENIUS",
+    "cmc_id": 39841,
+    "address": "0x1F12B85aAC097E43Aa1555b2881E98a51090e9A6",
+    "pool": "0x2a45d6e78af8531b026f2d50e2db238c2dbfdfbf5201eb0669b0fd5ac377d545",
+    "pool_name": "GENIUS / USDC 0.007%"
+  },
+  "GWEI": {
+    "symbol": "GWEI",
+    "cmc_id": 39379,
+    "address": "0x30117E4bC17d7B044194b76A38365C53b72F7D49",
+    "pool": "0xa8d956401d161f61418576b375b4fdaf0e76155f",
+    "pool_name": "GWEI / USDT 1%"
+  },
+  "BAT": {
+    "symbol": "BAT",
+    "cmc_id": 1697,
+    "address": "0x101d82428437127bf1608f699cd651e6abf9766e",
+    "pool": "0x6e425b4fc4efd070dc0def1654a17946c7e6b3c4",
+    "pool_name": "BAT / WBNB"
+  },
+  "APE": {
+    "symbol": "APE",
+    "cmc_id": 18876,
+    "address": "0x8f86a15EC17cb3369d8b3E666dAdBC11daA82b79",
+    "pool": "0xb62088662d9b5c9a47e852badd52251b3b2e74b6",
+    "pool_name": "APE / WBNB 0.25%"
+  },
+  "RAVE": {
+    "symbol": "RAVE",
+    "cmc_id": 38967,
+    "address": "0x97693439ea2f0ecdeb9135881e49f354656a911c",
+    "pool": "0x101552cfd9d16f17db7d11fde6082e4671e9fe39cb21679bb3fad5be9e5ec2c9",
+    "pool_name": "RAVE / USDT 0.007%"
+  },
+  "TAG": {
+    "symbol": "TAG",
+    "cmc_id": 34958,
+    "address": "0x208bf3e7da9639f1eaefa2de78c23396b0682025",
+    "pool": "0xf0750c373ebbb3baeef7e03d8300caad1983d67c",
+    "pool_name": "TAG / WBNB 0.05%"
+  },
+  "CTM": {
+    "symbol": "CTM",
+    "cmc_id": 37745,
+    "address": "0xc8Fb80fCc03f699C70ff0CC08C09106288888888",
+    "pool": "0xdb4c4d91f12ce76f5c9ac0eae193cf3b4d6684cd5f09bf35d03dd9ae6d8a43b1",
+    "pool_name": "CTM / BNB"
+  },
+  "UB": {
+    "symbol": "UB",
+    "cmc_id": 38339,
+    "address": "0x40b8129B786D766267A7a118cF8C07E31CDB6Fde",
+    "pool": "0x916f992df86795f24de6c268cfb9031fbb1155da",
+    "pool_name": "UB / USDC 0.01%"
+  },
+  "AIOZ": {
+    "symbol": "AIOZ",
+    "cmc_id": 9104,
+    "address": "0x33d08D8C7a168333a85285a68C0042b39fC3741D",
+    "pool": "0x80968a476e0235a026fd1f33aaac5a3b7b76110f",
+    "pool_name": "AIOZ / WBNB 0.25%"
+  },
+  "Q": {
+    "symbol": "Q",
+    "cmc_id": 38236,
+    "address": "0xc07e1300dc138601FA6B0b59f8D0FA477e690589",
+    "pool": "0x8bafe0bdd3eb9ae0539f5b32e771c1a72a189b7f",
+    "pool_name": "Q / USDT 0.01%"
+  },
+  "GUA": {
+    "symbol": "GUA",
+    "cmc_id": 38984,
+    "address": "0xa5c8e1513b6a08334b479fe4d71f1253259469be",
+    "pool": "0x7633bf3fccdacc92c1eca7ef1eec1490a9facfed",
+    "pool_name": "GUA / USDT 0.3%"
+  },
+  "ZAMA": {
+    "symbol": "ZAMA",
+    "cmc_id": 39332,
+    "address": "0x6907a5986c4950bdaf2f81828ec0737ce787519f",
+    "pool": "0xb39978347f071b74076be26d1445e2eccafe3557d2cdbc17e6c74d3ea883a4e0",
+    "pool_name": "ZAMA / USDT 0.007%"
+  },
+  "0G": {
+    "symbol": "0G",
+    "cmc_id": 38337,
+    "address": "0x4B948d64dE1F71fCd12fB586f4c776421a35b3eE",
+    "pool": "0x808a3f77c4be4e1ae5dab0f63cca2cbfde281dc5",
+    "pool_name": "0G / USDT 0.01%"
+  },
+  "BDX": {
+    "symbol": "BDX",
+    "cmc_id": 3987,
+    "address": "0x6ad12E761b438beA3EA09F6C6266556Bb24C2181",
+    "pool": "0xa06edae68062d4203d2eba0d0159d70d5c556ed7",
+    "pool_name": "BDX / WBNB"
+  },
+  "BILL": {
+    "symbol": "BILL",
+    "cmc_id": 39545,
+    "address": "0xDf24f8c21Cb404B3031a450D8e049D6E39FC1fA5",
+    "pool": "0x673dbd89b4de73f139ccca01f515536d386bc993c35efb3abf0a4d4b02b6dd20",
+    "pool_name": "BILL / USDT 0.007%"
+  },
+  "VCNT": {
+    "symbol": "VCNT",
+    "cmc_id": 28656,
+    "address": "0xc6BDFC4f2E90196738873E824a9eFa03F7c64176",
+    "pool": "0x0443b1baa23bab6808f46bbef5d68233be74f50b3add907d1fb91ffe4c30e28b",
+    "pool_name": "VCNT / USDT 79.999%"
+  },
+  "WFI": {
+    "symbol": "WFI",
+    "cmc_id": 34261,
+    "address": "0x90c48855bb69f9d2c261efd0d8c7f35990f2dd6f",
+    "pool": "0xcd7684c9329db3f181a53b6ee91dc925fde8315980e72c52080d4a2adba3aab7",
+    "pool_name": "WFI / USDT 0.162%"
+  },
+  "CYS": {
+    "symbol": "CYS",
+    "cmc_id": 39071,
+    "address": "0x0C69199C1562233640e0Db5Ce2c399A88eB507C7",
+    "pool": "0x9cfea9ef82f26857c3426487774c088330555da6113c61ac7fb8b30d0ae434b3",
+    "pool_name": "CYS / USDC 0.007%"
+  },
+  "YFI": {
+    "symbol": "YFI",
+    "cmc_id": 5864,
+    "address": "0x88f1a5ae2a3bf98aeaf342d26b30a79438c9142e",
+    "pool": "0xce383277847f8217392eea98c5a8b4a7d27811b0",
+    "pool_name": "YFI / WBNB"
+  },
+  "SOON": {
+    "symbol": "SOON",
+    "cmc_id": 36542,
+    "address": "0xb9E1Fd5A02D3A33b25a14d661414E6ED6954a721",
+    "pool": "0x0b2eb4332a15e5165477aad2c79721925920a383",
+    "pool_name": "SOON / WBNB 0.01%"
+  },
+  "SLX": {
+    "symbol": "SLX",
+    "cmc_id": 38542,
+    "address": "0x8A063A9ff4dE28dcB87117cc759BE6cE70e09F81",
+    "pool": "0x4d9541bcfc450b15c458877c97848c7a96898f6c",
+    "pool_name": "SLX / USDT 0.01%"
+  },
+  "KOGE": {
+    "symbol": "KOGE",
+    "cmc_id": 7184,
+    "address": "0xe6df05ce8c8301223373cf5b969afcb1498c5528",
+    "pool": "0xcf59b8c8baa2dea520e3d549f97d4e49ade17057",
+    "pool_name": "KOGE / USDT 0.01%"
+  },
+  "SMILEK": {
+    "symbol": "SMILEK",
+    "cmc_id": 10186,
+    "address": "0x4f9d3AdbfAF4579518b1Ca7E06468A363897B997",
+    "pool": "0xeed4c58471c5c55cf99714f6d18608cd267793f3",
+    "pool_name": "SMILEK / USDT 0.01%"
+  },
+  "DUCKY": {
+    "symbol": "DUCKY",
+    "cmc_id": 33852,
+    "address": "0xaDB50D6a3f931E5b4A14D06A4A77fe71171A462f",
+    "pool": "0x5cf69ff11923dfb8ef5fca61c6832c05f5c80f0c",
+    "pool_name": "DUCKY / BTCB 0.01%"
+  },
+  "MY": {
+    "symbol": "MY",
+    "cmc_id": 35269,
+    "address": "0xf0ebb572643336834d516c485ad31d3299999999",
+    "pool": "0x0bc03c0d7e62a0bd2477c317bdf30fe9463cb388",
+    "pool_name": "MY / WBNB 0.25%"
+  },
+  "BEAM": {
+    "symbol": "BEAM",
+    "cmc_id": 28298,
+    "address": "0x62D0A8458eD7719FDAF978fe5929C6D342B0bFcE",
+    "pool": "0x7a50f72f6091745d3cc3f1388b0ca5f2f14eff19",
+    "pool_name": "BEAM / WBNB"
+  },
+  "TRIA": {
+    "symbol": "TRIA",
+    "cmc_id": 39382,
+    "address": "0xb0b92de23baa85fb06208277e925ced53edab482",
+    "pool": "0x01e1dd31be98b874ee414e5cacfc2b15a624b8968f55f849539d423f36d09b75",
+    "pool_name": "TRIA / USDT 0.007%"
+  },
+  "GOMINING": {
+    "symbol": "GOMINING",
+    "cmc_id": 10180,
+    "address": "0x7Ddc52c4De30e94Be3A6A0A2b259b2850f421989",
+    "pool": "0xb297d74cbe67ba9a0fa92862c31e501228e8b00b",
+    "pool_name": "GMT / USDT 1%"
+  },
+  "TAC": {
+    "symbol": "TAC",
+    "cmc_id": 37338,
+    "address": "0x1219c409fabe2c27bd0d1a565daeed9bd9f271de",
+    "pool": "0xd2cd331e493a325dd5634cfeb93852389c0aaece",
+    "pool_name": "TAC / USD1 0.05%"
+  },
+  "REAL": {
+    "symbol": "REAL",
+    "cmc_id": 14721,
+    "address": "0x65e7a112dB1142EAE919201b1232f7aA488Ed83c",
+    "pool": "0x4ba242f5af0e096a418b98a1fb1abbea7a9e0ab4",
+    "pool_name": "REAL / USDT"
+  },
+  "ZIG": {
+    "symbol": "ZIG",
+    "cmc_id": 9260,
+    "address": "0x8C907e0a72C3d55627E853f4ec6a96b0C8771145",
+    "pool": "0x001405fadd5d49ee1838f3a96e42e0028ad9d7ef",
+    "pool_name": "ZIG / WBNB 1%"
+  },
+  "ALE": {
+    "symbol": "ALE",
+    "cmc_id": 30605,
+    "address": "0x9dCE13E71B11eb5Df66ca269bD657696587Fd4E2",
+    "pool": "0x831f347c3a35a6941d235d38b9dbeb337f93ad34",
+    "pool_name": "ALE / WBNB 0.01%"
+  },
+  "HUMA": {
+    "symbol": "HUMA",
+    "cmc_id": 36576,
+    "address": "0x92516e0DDf1dDBF7FAB1b79CaC26689fDC5ba8e6",
+    "pool": "0x7874f0ecd450a5f06acb85543fe1d0d48e1c525f",
+    "pool_name": "HUMA / USDT 0.01%"
+  },
+  "APR": {
+    "symbol": "APR",
+    "cmc_id": 38569,
+    "address": "0x299AD4299Da5b2b93Fba4c96967B040C7F611099",
+    "pool": "0xff84bf0ab4772bfa399b42b2633617a08506dfd8ba6fb3b7a782b3c021c0bba1",
+    "pool_name": "APR / BNB 0.007%"
+  },
+  "DUSK": {
+    "symbol": "DUSK",
+    "cmc_id": 4092,
+    "address": "0xb2bd0749dbe21f623d9baba856d3b0f0e1bfec9c",
+    "pool": "0x678edb8b268e73db57b7694c163e1dc296b6e219",
+    "pool_name": "DUSK / WBNB"
+  },
+  "SUSHI": {
+    "symbol": "SUSHI",
+    "cmc_id": 6758,
+    "address": "0x947950BcC74888a40Ffa2593C5798F11Fc9124C4",
+    "pool": "0x954ecb497537c58250a0d9d551fd7b1965a35db4",
+    "pool_name": "#BB / SUSHI 0.3%"
+  },
+  "BSB": {
+    "symbol": "BSB",
+    "cmc_id": 38889,
+    "address": "0x595deaad1eb5476ff1e649fdb7efc36f1e4679cc",
+    "pool": "0x26a8e4591b7a0efcd45a577ad0d54aa64a99efaf2546ad4d5b0454c99eb70eab",
+    "pool_name": "BSB / USDT 0.007%"
+  },
+  "NILA": {
+    "symbol": "NILA",
+    "cmc_id": 36302,
+    "address": "0x00f8Da33734FeB9b946fEC2228C25072D2e2E41f",
+    "pool": "0x9c50bad14b9858df67111e82a2788dee2f0cb4a2",
+    "pool_name": "NILA / USDT"
+  },
+  "BABYDOGE": {
+    "symbol": "BABYDOGE",
+    "cmc_id": 10407,
+    "address": "0xc748673057861a797275cd8a068abb95a902e8de",
+    "pool": "0xc736ca3d9b1e90af4230bd8f9626528b3d4e0ee0",
+    "pool_name": "BabyDoge / WBNB"
+  },
+  "VELO": {
+    "symbol": "VELO",
+    "cmc_id": 7127,
+    "address": "0xf486ad071f3bee968384d2e39e2d8af0fcf6fd46",
+    "pool": "0x258474cd00b4f42842ed424e6c2c1da0087031b8",
+    "pool_name": "VELO / USDC 0.01%"
+  },
+  "XPR": {
+    "symbol": "XPR",
+    "cmc_id": 5350,
+    "address": "0x5de3939b2f811a61d830e6f52d13b066881412ab",
+    "pool": "0x40016fa97bd81ba59d270af3504425d23f0ac2c2",
+    "pool_name": "XPR / WBNB 1%"
+  },
+  "IRYS": {
+    "symbol": "IRYS",
+    "cmc_id": 38978,
+    "address": "0x91152B4Ef635403efBAe860edD0F8c321d7c035d",
+    "pool": "0x73de8b8d37fac1afe156f6533788a0eff197d636",
+    "pool_name": "IRYS / USDT 0.01%"
+  },
+  "KAVA": {
+    "symbol": "KAVA",
+    "cmc_id": 4846,
+    "address": "0x9BAFC8d4b487cEBff201721702507a3E2C67ad79",
+    "pool": "0x99e1a43e738b026a2cd4359409594debab61b48d",
+    "pool_name": "KAVA / USDT 0.05%"
+  },
+  "ACH": {
+    "symbol": "ACH",
+    "cmc_id": 6958,
+    "address": "0xBc7d6B50616989655AfD682fb42743507003056D",
+    "pool": "0x28bdb16b623176426305a70d8b475be73aca71f3",
+    "pool_name": "ACH / USDT"
+  },
+  "LUR": {
+    "symbol": "LUR",
+    "cmc_id": 36804,
+    "address": "0xc66B6f38aE5053A109cfd8639E0Ee17EC69cf788",
+    "pool": "0x65981ee0031ae66bc98f23b89588180e4da902195742cca69aa823a7b91bd479",
+    "pool_name": "LUR / USDT 79.5%"
+  },
+  "ROSE": {
+    "symbol": "ROSE",
+    "cmc_id": 7653,
+    "address": "0xF00600eBC7633462BC4F9C61eA2cE99F5AAEBd4a",
+    "pool": "0x1582016af1519a30af32fb5e069537c9b7719b14",
+    "pool_name": "wROSE / Cake 1%"
+  },
+  "OPEN": {
+    "symbol": "OPEN",
+    "cmc_id": 37456,
+    "address": "0xa227cc36938f0c9e09ce0e64dfab226cad739447",
+    "pool": "0x419f8539c423d66dc42bd80d6f0bdd6fd4c21dce",
+    "pool_name": "OPEN / USDT 0.01%"
+  },
+  "BARD": {
+    "symbol": "BARD",
+    "cmc_id": 38408,
+    "address": "0xd23A186A78c0B3B805505E5f8ea4083295ef9f3a",
+    "pool": "0xb6d402bcc02603edc497e8d428d806c8a45f2bf56fcf9e4878d24a3ee830bb76",
+    "pool_name": "BARD / USDT 1%"
+  },
+  "ZETA": {
+    "symbol": "ZETA",
+    "cmc_id": 21259,
+    "address": "0x0000028a2eB8346cd5c0267856aB7594B7a55308",
+    "pool": "0x85ff89ebd671297b75cc9ce7d58e2803b0a3c1f11bb42c7f7926083b57bc134b",
+    "pool_name": "ZETA / BLZ 0.3%"
+  },
+  "BAS": {
+    "symbol": "BAS",
+    "cmc_id": 37387,
+    "address": "0x0f0df6cb17ee5e883eddfef9153fc6036bdb4e37",
+    "pool": "0xa341e8e8ee6bf97fa1d18c2d12f00555dc78207e",
+    "pool_name": "BAS / WBNB 0.01%"
+  },
+  "AXL": {
+    "symbol": "AXL",
+    "cmc_id": 17799,
+    "address": "0x8b1f4432F943c465A973FeDC6d7aa50Fc96f1f65",
+    "pool": "0xd10612a288bd5024db6a47663750996d176130fe",
+    "pool_name": "AXL / USDT 0.25%"
+  },
+  "PLUME": {
+    "symbol": "PLUME",
+    "cmc_id": 35364,
+    "address": "0x5aFadCd1E8E3CA78Ee2D37100102f2aec8Bc0Aa8",
+    "pool": "0x8d230827cc4c756ed9458a10e6043588afeaefadfe0f05e0936bc1e65e96c46b",
+    "pool_name": "PLUME / USDT 13.5%"
+  },
+  "UAI": {
+    "symbol": "UAI",
+    "cmc_id": 38841,
+    "address": "0x3e5d4f8aee0d9b3082d5f6da5d6e225d17ba9ea0",
+    "pool": "0x57004a34731b96d9e86b706cd629f24456ca2c7bdfcc5aae2417496d65090eb7",
+    "pool_name": "UAI / BNB 0.007%"
+  },
+  "ZIL": {
+    "symbol": "ZIL",
+    "cmc_id": 2469,
+    "address": "0xb86abcb37c3a4b64f74f59301aff131a1becc787",
+    "pool": "0x6a97867a4b7eb7646ffb1f359ad582e9903aa1c2",
+    "pool_name": "ZIL / WBNB"
+  },
+  "TOSHI": {
+    "symbol": "TOSHI",
+    "cmc_id": 27750,
+    "address": "0x6a2608Dabe09bc1128EEC7275B92DFB939D5Db3f",
+    "pool": "0x27820f8b2e7c5dbe1eef6805577c222afde1a191",
+    "pool_name": "TOSHI / USDT 0.05%"
+  },
+  "BRETT": {
+    "symbol": "BRETT",
+    "cmc_id": 29743,
+    "address": "0xa7440029eca41deabd8775ef1d6086b37d4df8d6",
+    "pool": "0x3a08ae820cf1483ed3ac9c33cc100913299d0e12",
+    "pool_name": "BRETT / USDT 0.05%"
+  },
+  "ELF": {
+    "symbol": "ELF",
+    "cmc_id": 2299,
+    "address": "0xa3f020a5c92e15be13caf0ee5c95cf79585eecc9",
+    "pool": "0x19eeb20cfbf0c41eba965a86f1be21acdbfad3b6",
+    "pool_name": "ELF / USDT"
+  },
+  "PEAQ": {
+    "symbol": "PEAQ",
+    "cmc_id": 14588,
+    "address": "0x8b9Ee39195eA99d6ddD68030F44131116bc218F6",
+    "pool": "0xa6181157bed24d033cd3482f8718171603dd6a53a85fb9315d85014632bf87db",
+    "pool_name": "PEAQ / USDC 0.034%"
+  },
+  "COAI": {
+    "symbol": "COAI",
+    "cmc_id": 38489,
+    "address": "0x0A8D6C86e1bcE73fE4D0bD531e1a567306836EA5",
+    "pool": "0x778121b464151fe5d931587c457e48fcaaa0dc7a",
+    "pool_name": "COAI / USDC 0.01%"
+  },
+  "BDCA": {
+    "symbol": "BDCA",
+    "cmc_id": 35637,
+    "address": "0x0c8382719ef242cae2247e4decb2891fbf699818",
+    "pool": "0x5fc8776d540c8eaa1b0c06f127719bcc5152c090",
+    "pool_name": "BDCA / USDT 0.05%"
+  }
+}

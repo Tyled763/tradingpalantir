@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+.env
+journal/journal.db
+journal/journal.jsonl
+positions.json
+config/firewall_cache.json
+settings.json
+cache/
