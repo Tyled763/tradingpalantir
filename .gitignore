@@ -7,3 +7,4 @@ positions.json
 config/firewall_cache.json
 settings.json
 cache/
+paper_run.log
