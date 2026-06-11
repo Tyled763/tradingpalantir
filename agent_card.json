@@ -1,0 +1,37 @@
+{
+  "type": "AgentCard",
+  "name": "TradingPalantir",
+  "description": "Palantir-style AI command center for autonomous spot trading on BNB Smart Chain. Routes CoinMarketCap data and skill-equivalents into an evidence pipeline, scores all eligible tokens 1-100, arms only high-conviction candidates (score >= 90), detects entries with a proprietary FVG/VWAP/multi-timeframe-EMA strategy, manages positions through adaptive trendflex ride-mode exits with R/ATR protective stops, and executes through Trust Wallet Agent Kit only after deterministic Risk Governor approval. LLMs (Claude two-pass: analyst + independent risk reviewer) classify and explain — they never execute.",
+  "version": "1.0.0",
+  "wallet": {
+    "chain": "bsc",
+    "chainId": 56,
+    "address": "0xAaD844634247B124Eb8cA93378fF7E3608E7a290"
+  },
+  "competition": {
+    "event": "BNB HACK: AI Trading Agent Edition — CoinMarketCap x Trust Wallet",
+    "track": "Track 1 — Autonomous Trading Agents",
+    "registrationTx": "0xd75091adb91e58ac97523311057b96254b752ef6ef9abddfb4649b52d403780e"
+  },
+  "capabilities": [
+    "token-scoring-1-100",
+    "three-stage-funnel-screening",
+    "fvg-vwap-ema-entry-signals",
+    "adaptive-trendflex-ride-exits",
+    "r-multiple-atr-protective-stops",
+    "deterministic-risk-governor",
+    "tiered-drawdown-guard",
+    "daily-trade-monitor",
+    "token-risk-firewall",
+    "cmc-mcp-data-pipeline",
+    "twak-execution"
+  ],
+  "dataSources": ["CoinMarketCap Pro API", "CoinMarketCap MCP (AI Agent Hub)", "GeckoTerminal OHLCV"],
+  "execution": "Trust Wallet Agent Kit (TWAK) — self-custody, BSC mainnet",
+  "llm": {
+    "provider": "Anthropic Claude",
+    "pattern": "two-pass: analyst proposes, independent reviewer challenges; capability-gated (can only reduce risk, never execute)"
+  },
+  "repository": "https://github.com/Tyled763/tradingpalantir",
+  "license": "MIT"
+}
