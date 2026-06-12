@@ -89,3 +89,12 @@ class MarketRegimeEngine:
         else:
             out["risk_budget"] = "normal"
         return out
+
+    def adaptive_threshold(self, regime: Dict, perp: Optional[Dict] = None) -> float:
+        """Порог armed: риск-он мягче, риск-офф жёстче; перегрев перпов +2."""
+        import config as C
+        thr = C.SCORE_THRESHOLDS.get(regime.get("global_regime", "neutral"),
+                                     float(C.SCORE_ENTRY_THRESHOLD))
+        if perp and perp.get("pressure") == "overheated":
+            thr += C.SCORE_THRESHOLD_OVERHEAT_BUMP
+        return thr

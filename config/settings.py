@@ -148,7 +148,10 @@ COMPLIANCE_LOG = "compliance.jsonl"
 # TradingPalantir — трёхстадийная воронка + risk-tiers (v2)
 # ══════════════════════════════════════════════════════════
 WATCHLIST_SIZE        = 20    # Stage A: топ-N по score
-SCORE_ENTRY_THRESHOLD = 90    # Stage B: armed = score >= порога
+SCORE_ENTRY_THRESHOLD = 90    # fallback, если режим неизвестен
+# Адаптивный порог armed по режиму рынка (v2): хороший рынок — ниже планка
+SCORE_THRESHOLDS = {"risk_on": 85.0, "neutral": 88.0, "risk_off": 92.0}
+SCORE_THRESHOLD_OVERHEAT_BUMP = 2.0   # перегрев перпов → +2 к порогу
 RESCREEN_INTERVAL_SEC = 1500  # пересчёт скоринга (25 мин)
 
 # Drawdown Guard (ступени, % дневной просадки)

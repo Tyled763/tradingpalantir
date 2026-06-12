@@ -72,8 +72,9 @@ c2.metric("Risk budget", regime.get("risk_budget", "—"))
 c3.metric("DD guard", dd_ev.get("mode", "normal"),
           f"{dd_ev.get('dd_pct', 0)}% dd" if dd_ev else "")
 armed = armed_ev.get("armed", [])
+thr = armed_ev.get("threshold", C.SCORE_ENTRY_THRESHOLD)
 c4.metric("Armed set", len(armed),
-          ", ".join(a[0] for a in armed[:4]) if armed else "ждём 90+")
+          ", ".join(a[0] for a in armed[:4]) if armed else f"ждём {thr}+")
 c5.metric("Fills today", n_fills,
           "live window" if C.LIVE_WINDOW[0] <= datetime.now(timezone.utc).date().isoformat() <= C.LIVE_WINDOW[1] else "pre-window")
 
@@ -96,10 +97,10 @@ with left:
             p = comp_by_sym.get(sym, {})
             c = p.get("components", {})
             rows.append({"symbol": sym, "score": score,
-                         "armed": "🟢" if score >= C.SCORE_ENTRY_THRESHOLD else "",
+                         "armed": "🟢" if score >= thr else "",
                          "firewall": p.get("firewall", "?"),
                          **{k: c.get(k) for k in
-                            ("liquidity", "momentum", "social", "perp", "regime")}})
+                            ("liquidity", "momentum", "breakout", "trend", "social")}})
         st.dataframe(pd.DataFrame(rows), height=420, use_container_width=True)
     else:
         st.info("Скоринг ещё не записан — агент должен пройти первый rescreen.")

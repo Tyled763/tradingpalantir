@@ -65,7 +65,7 @@ class TradingPalantir:
         self.firewall = TokenRiskFirewall(twak=self.twak, feed=self.feed)
         self.radar = OpportunityRadar(self.registry, self.cmc, self.mcp,
                                       derivatives=self.derivatives,
-                                      firewall=self.firewall)
+                                      firewall=self.firewall, feed=self.feed)
         self.ese = EntrySignalEngine(self.feed)
         self.governor = RiskGovernor(self.rules, self.journal)
         self.gateway = LLMGateway()
@@ -85,7 +85,9 @@ class TradingPalantir:
         self.regime = await self.regime_engine.read()
         self.journal.log(ET.REGIME_UPDATED, **{k: self.regime[k] for k in
                          ("global_regime", "market_state", "risk_budget")})
-        funnel = await self.radar.funnel(self.regime)
+        perp = await self.derivatives.read()
+        threshold = self.regime_engine.adaptive_threshold(self.regime, perp)
+        funnel = await self.radar.funnel(threshold)
         self.watchlist = funnel["watchlist"]
         self.scored_by_symbol = {t.symbol: t for t in funnel["scored"]}
         armed = funnel["armed"]
@@ -93,7 +95,7 @@ class TradingPalantir:
                          watchlist=[(t.symbol, t.score) for t in self.watchlist])
         self.journal.log(ET.ARMED_SET_UPDATED,
                          armed=[(t.symbol, t.score) for t in armed],
-                         threshold=C.SCORE_ENTRY_THRESHOLD)
+                         threshold=threshold)
         for t in self.watchlist:
             self.journal.log(ET.SCORE_UPDATED, symbol=t.symbol, score=t.score,
                              components=t.components, firewall=t.firewall)
@@ -111,7 +113,8 @@ class TradingPalantir:
         print(f"[TP] regime={self.regime.get('global_regime')}/"
               f"{self.regime.get('market_state')} | "
               f"watchlist={[(t.symbol, t.score) for t in self.watchlist[:6]]}… | "
-              f"armed={[t.symbol for t in armed]} | monitoring={self.ese.monitored()}")
+              f"thr={threshold} | armed={[t.symbol for t in armed]} | "
+              f"monitoring={self.ese.monitored()}")
 
     # ── Stage C → вход ────────────────────────────────────
     async def _handle_signal(self, sig: dict) -> None:

@@ -81,7 +81,9 @@ class CMC:
             if arr:
                 q = arr[0]["quote"]["USD"]
                 out[sym] = {"price": q.get("price"),
+                            "change_1h": q.get("percent_change_1h"),
                             "change_24h": q.get("percent_change_24h"),
+                            "change_7d": q.get("percent_change_7d"),
                             "volume_24h": q.get("volume_24h"),
                             "market_cap": q.get("market_cap")}
         return out
