@@ -79,6 +79,29 @@ def test_armed_threshold_applied():
     assert len(res["armed"]) > 0       # все прошли
 
 
+def test_armed_capped_at_monitor_cap():
+    # 20 хороших монет, низкий порог → armed не больше MONITOR_CAP
+    q = quotes_for(20, vol=9e8, chg=8.0)
+    r = mk_radar(q)
+    res = asyncio.run(r.funnel(threshold=1.0))
+    assert len(res["armed"]) <= C.MONITOR_CAP
+    # armed — это топ по score
+    assert res["armed"] == sorted(res["armed"], key=lambda t: t.score, reverse=True)
+
+
+def test_hysteresis_keeps_monitored_coin():
+    q = quotes_for(15, vol=3e7, chg=1.0)
+    r = mk_radar(q)
+    base = asyncio.run(r.scan())
+    # берём монету у границы и проверяем: с keep она держится при чуть более высоком пороге
+    sym = base[0].symbol
+    thr = base[0].score + C.MONITOR_HYST - 0.5     # выше её score, но в пределах гистерезиса
+    without = asyncio.run(r.funnel(threshold=thr))
+    with_keep = asyncio.run(r.funnel(threshold=thr, keep={sym}))
+    assert sym not in [t.symbol for t in without["armed"]]
+    assert sym in [t.symbol for t in with_keep["armed"]]
+
+
 def test_firewall_caps_below_threshold():
     class FW:
         async def check(self, *a, **k):

@@ -75,8 +75,18 @@ armed = armed_ev.get("armed", [])
 thr = armed_ev.get("threshold", C.SCORE_ENTRY_THRESHOLD)
 c4.metric("Armed set", len(armed),
           ", ".join(a[0] for a in armed[:4]) if armed else f"ждём {thr}+")
-c5.metric("Fills today", n_fills,
-          "live window" if C.LIVE_WINDOW[0] <= datetime.now(timezone.utc).date().isoformat() <= C.LIVE_WINDOW[1] else "pre-window")
+setups_today = q("SELECT COUNT(*) n FROM events WHERE event='TRADE_SIGNAL_CREATED' AND ts>=?",
+                 (day0,))
+n_setups = int(setups_today.iloc[0]["n"]) if not setups_today.empty else 0
+c5.metric("Setups today", n_setups, f"{n_fills} fills")
+
+# ── живая воронка (синергия скоринга и торговли) ──────────
+wl_n = len(last_event("WATCHLIST_UPDATED").get("watchlist", []))
+mon_n = len(armed)
+n_entries = q("SELECT COUNT(*) n FROM events WHERE event='ORDER_FILLED' AND ts>=?", (day0,))
+ne = int(n_entries.iloc[0]["n"]) if not n_entries.empty else 0
+st.caption(f"**Воронка:** 128 scored → {wl_n} watchlist → **{mon_n} armed/monitored** "
+           f"(порог {thr}) → {n_setups} setups today → {ne} fills")
 
 st.divider()
 left, right = st.columns([3, 2])

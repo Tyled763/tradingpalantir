@@ -87,7 +87,9 @@ class TradingPalantir:
                          ("global_regime", "market_state", "risk_budget")})
         perp = await self.derivatives.read()
         threshold = self.regime_engine.adaptive_threshold(self.regime, perp)
-        funnel = await self.radar.funnel(threshold)
+        # гистерезис: уже мониторимые + монеты с открытой позицией не выпадают на 1 цикл
+        keep = set(self.ese.monitored()) | {p.symbol for p in self.positions.open_positions()}
+        funnel = await self.radar.funnel(threshold, keep=keep)
         self.watchlist = funnel["watchlist"]
         self.scored_by_symbol = {t.symbol: t for t in funnel["scored"]}
         armed = funnel["armed"]

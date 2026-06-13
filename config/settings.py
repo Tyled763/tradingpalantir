@@ -147,11 +147,14 @@ COMPLIANCE_LOG = "compliance.jsonl"
 # ══════════════════════════════════════════════════════════
 # TradingPalantir — трёхстадийная воронка + risk-tiers (v2)
 # ══════════════════════════════════════════════════════════
-WATCHLIST_SIZE        = 20    # Stage A: топ-N по score
-SCORE_ENTRY_THRESHOLD = 90    # fallback, если режим неизвестен
-# Адаптивный порог armed по режиму рынка (v2): хороший рынок — ниже планка
-SCORE_THRESHOLDS = {"risk_on": 85.0, "neutral": 88.0, "risk_off": 92.0}
-SCORE_THRESHOLD_OVERHEAT_BUMP = 2.0   # перегрев перпов → +2 к порогу
+WATCHLIST_SIZE        = 20    # Stage A: топ-N по score (показываем в дашборде)
+SCORE_ENTRY_THRESHOLD = 74    # fallback, если режим неизвестен
+# Адаптивный «пол качества» по режиму (v3): порог = floor, реальный armed = top-MONITOR_CAP над ним.
+# Хороший рынок → пол ниже → набирается полные 12; risk_off → пол выше → armed сжимается сам.
+SCORE_THRESHOLDS = {"risk_on": 70.0, "neutral": 74.0, "risk_off": 80.0}
+SCORE_THRESHOLD_OVERHEAT_BUMP = 2.0   # перегрев перпов → +2 к полу
+MONITOR_CAP = 12              # макс. монет под мониторингом/armed (rate-limit + фокус)
+MONITOR_HYST = 6.0            # гистерезис: держим монету пока score ≥ floor − HYST (анти-churn прогрева)
 RESCREEN_INTERVAL_SEC = 1500  # пересчёт скоринга (25 мин)
 
 # Drawdown Guard (ступени, % дневной просадки)

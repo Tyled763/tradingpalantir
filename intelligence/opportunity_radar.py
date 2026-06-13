@@ -205,10 +205,17 @@ class OpportunityRadar:
         toks.sort(key=lambda t: t.score, reverse=True)
         return toks
 
-    async def funnel(self, threshold: float) -> Dict:
-        """Stage A полностью: скан → watchlist → firewall → armed (адаптивный порог)."""
+    async def funnel(self, threshold: float, keep: Optional[set] = None) -> Dict:
+        """
+        Stage A полностью: скан → watchlist → firewall → armed.
+        armed = top-MONITOR_CAP монет с score ≥ floor (порог = «пол качества»,
+        размер капается MONITOR_CAP). `keep` — символы с гистерезисом/открытой
+        позицией: остаются armed, если score ≥ floor − MONITOR_HYST.
+        """
+        keep = keep or set()
         scored = await self.scan()
         watchlist = scored[:C.WATCHLIST_SIZE]
+        # firewall — по watchlist (кэш 24ч внутри)
         for t in watchlist:
             if self.firewall is not None:
                 fw = await self.firewall.check(t.symbol, t.address, t.pool)
@@ -219,7 +226,14 @@ class OpportunityRadar:
                     t.score = min(t.score, threshold - 1.0)
             else:
                 t.firewall = "skipped"
-            t.armed = t.score >= threshold
+        watchlist.sort(key=lambda t: t.score, reverse=True)
+
+        # кандидаты в armed: прошли пол (или гистерезис для уже-мониторимых) и не rejected
+        elig = [t for t in watchlist if t.firewall != "rejected" and (
+                t.score >= threshold or
+                (t.symbol in keep and t.score >= threshold - C.MONITOR_HYST))]
+        armed = elig[:C.MONITOR_CAP]              # капим топ-CAP
+        for t in watchlist:
+            t.armed = t in armed
         return {"scored": scored, "watchlist": watchlist,
-                "armed": [t for t in watchlist if t.armed],
-                "threshold": threshold}
+                "armed": armed, "threshold": threshold}
