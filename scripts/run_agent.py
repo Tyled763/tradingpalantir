@@ -222,7 +222,8 @@ class TradingPalantir:
             return
         pnl = r.get("pnl", 0.0)
         self.positions.update(p.sid, state=PosState.CLOSED.value,
-                              closed_at=time.time(), realized_pnl=pnl)
+                              closed_at=time.time(), realized_pnl=pnl,
+                              close_reason=reason)
         self.exits.forget(p.sid)
         self.journal.log(ET.FULL_CLOSE, symbol=p.symbol, sid=p.sid, reason=reason,
                          px=px, pnl=pnl, ride=p.ride_mode)

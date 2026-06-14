@@ -175,7 +175,9 @@ FIREWALL_CACHE_H           = 24
 
 # Exit Optimizer
 ATR_PERIOD      = 14
-ATR_TRAIL_MULT  = 3.0
+# ШИРОКИЙ трейл (решение пользователя): срабатывает только на резком развороте,
+# иначе позиция держится до флипа trendflex — даём прибыли течь.
+ATR_TRAIL_MULT  = 5.0
 R_BE_TRIGGER    = 1.0         # +1R -> стоп в безубыток
 R_LOCK_TRIGGER  = 2.0         # +2R -> стоп на +1R
 

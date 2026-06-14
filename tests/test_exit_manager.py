@@ -21,7 +21,7 @@ def test_sl_always_first():
     em = ExitManager()
     a = em.evaluate(P(ride_mode=True), px=97.0, bar_high=99.0, bar_low=97.0,
                     tf_row=row(trendflex=0.9))
-    assert a.kind == "exit" and a.exit_reason == "sl" and a.exit_px == 98.0
+    assert a.kind == "exit" and a.exit_reason == "stop_loss" and a.exit_px == 98.0
 
 
 def test_normal_mode_tp_hit():
@@ -86,3 +86,12 @@ def test_emergency_flatten():
     a = em.evaluate(P(), px=100.0, bar_high=100.5, bar_low=99.5,
                     tf_row=row(), emergency=True)
     assert a.kind == "exit" and a.exit_reason == "emergency"
+
+
+def test_trail_above_entry_labeled_profit():
+    em = ExitManager()
+    # стоп подтянут выше входа → выход = trail_profit (фикс прибыли), не stop_loss
+    p = P(ride_mode=True, stop=105.0)   # entry 100, stop 105 (в прибыли)
+    a = em.evaluate(p, px=104.0, bar_high=106.0, bar_low=104.0,
+                    tf_row=row(trendflex=0.5))
+    assert a.kind == "exit" and a.exit_reason == "trail_profit"

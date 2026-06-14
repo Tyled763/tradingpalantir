@@ -48,9 +48,11 @@ class ExitManager:
         if emergency:
             return ExitAction("exit", "emergency", px, note="emergency flatten")
 
-        # 1) SL всегда приоритетен (по low бара)
+        # 1) SL всегда приоритетен (по low бара). Лейбл честный:
+        #    стоп выше входа = зафиксированная прибыль (trail), ниже = защитный убыток.
         if bar_low <= pos.stop:
-            return ExitAction("exit", "sl", pos.stop)
+            reason = "trail_profit" if pos.stop >= pos.entry else "stop_loss"
+            return ExitAction("exit", reason, pos.stop)
 
         tflex = tf_row.get("trendflex") if tf_row else None
         mf_bull = bool(tf_row.get("mf_bull")) if tf_row else False

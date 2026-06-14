@@ -251,8 +251,12 @@ with right:
                 df[col] = None
         ride_col = df["ride_mode"] if "ride_mode" in df else pd.Series([False] * len(df))
         df["ride"] = ride_col.map(lambda x: "🏄" if x else "")
+        _EXIT = {"stop_loss": "🛑 stop", "trail_profit": "💰 trail",
+                 "trendflex": "📉 flip", "tp": "🎯 tp", "emergency": "⚠️ emerg"}
+        cr = df["close_reason"] if "close_reason" in df else pd.Series([None] * len(df))
+        df["exit"] = cr.map(lambda x: _EXIT.get(x, "") if x else "")
         show = df[["sid", "symbol", "state", "tf", "entry", "stop",
-                   "realized_pnl", "ride"]].sort_values("sid", ascending=False)
+                   "realized_pnl", "ride", "exit"]].sort_values("sid", ascending=False)
 
         def _pnl_color(v):
             if v is None or (isinstance(v, float) and v != v):
