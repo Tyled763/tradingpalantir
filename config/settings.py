@@ -179,6 +179,10 @@ ATR_TRAIL_MULT  = 3.0
 R_BE_TRIGGER    = 1.0         # +1R -> стоп в безубыток
 R_LOCK_TRIGGER  = 2.0         # +2R -> стоп на +1R
 
+# Минимальная дистанция стопа (анти-выбивание шумом): reject слишком тугих сетапов
+MIN_STOP_ATR_MULT   = 0.8     # мин. дистанция стопа = 0.8 x ATR(ТФ сигнала)
+MIN_STOP_PCT_FALLBACK = 0.005 # 0.5% от входа, если ATR недоступен (покрывает 0%-вырожд.)
+
 # LLM two-pass
 REVIEWER_ENABLED = True
 

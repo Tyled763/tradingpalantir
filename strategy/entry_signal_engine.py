@@ -14,6 +14,8 @@ import config as C
 from marketdata.gt_feed import GeckoTerminalFeed, warmup_df_for_token
 from strategy.calculator import BarProcessor, calc_tp
 from strategy.engine import check_all_signals
+from exit.atr import atr_from_bars
+from journal import event_types as ET
 
 
 def _bar_ms(row: Dict) -> int:
@@ -28,8 +30,9 @@ def _finite(x) -> bool:
 
 
 class EntrySignalEngine:
-    def __init__(self, feed: Optional[GeckoTerminalFeed] = None):
+    def __init__(self, feed: Optional[GeckoTerminalFeed] = None, journal=None):
         self.feed = feed or GeckoTerminalFeed("bsc")
+        self.journal = journal              # опц. — для лога TIGHT_STOP_SKIP
         self.proc: Dict[Tuple[str, str], BarProcessor] = {}
         self.last_ts: Dict[Tuple[str, str], int] = {}
         self.next_fetch: Dict[Tuple[str, str], float] = {}
@@ -131,8 +134,21 @@ class EntrySignalEngine:
             if sig["direction"] != "bull":          # спот long-only
                 continue
             entry = float(row["close"])
-            stop = self.proc[(sym, tf)].find_fractal_stop("bull", entry, C.FRACTAL_N)
+            bp = self.proc[(sym, tf)]
+            stop = bp.find_fractal_stop("bull", entry, C.FRACTAL_N)
             if stop >= entry:
+                continue
+            # ── ATR-гейт: отсекаем вырожденно тугие стопы (анти-выбивание шумом) ──
+            atr = atr_from_bars(list(bp.rows)[-(C.ATR_PERIOD * 3):], C.ATR_PERIOD)
+            min_dist = max((atr or 0.0) * C.MIN_STOP_ATR_MULT,
+                           entry * C.MIN_STOP_PCT_FALLBACK)
+            if (entry - stop) < min_dist:
+                if self.journal is not None:
+                    self.journal.log(ET.TIGHT_STOP_SKIP, symbol=sym, tf=tf,
+                                     entry=round(entry, 8), stop=round(stop, 8),
+                                     dist_pct=round((entry - stop) / entry * 100, 3),
+                                     min_dist_pct=round(min_dist / entry * 100, 3),
+                                     atr=round(atr, 8) if atr else None)
                 continue
             tp = calc_tp("bull", entry, stop)["tp"]
             out.append({"symbol": sym, "tf": tf, "type": sig["type"],

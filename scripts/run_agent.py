@@ -66,7 +66,7 @@ class TradingPalantir:
         self.radar = OpportunityRadar(self.registry, self.cmc, self.mcp,
                                       derivatives=self.derivatives,
                                       firewall=self.firewall, feed=self.feed)
-        self.ese = EntrySignalEngine(self.feed)
+        self.ese = EntrySignalEngine(self.feed, journal=self.journal)
         self.governor = RiskGovernor(self.rules, self.journal)
         self.gateway = LLMGateway()
         self.decisions = DecisionEngine(self.gateway, self.governor, self.journal)
