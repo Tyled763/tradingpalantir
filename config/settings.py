@@ -135,7 +135,7 @@ OSC_HW_SMOOTH   = 3
 RIDE_MODE_ENABLED = True
 
 # ── Телеметрия / журнал ───────────────────────────────────
-PAPER_EQUITY = 1000.0        # стартовый бумажный капитал для DRY_RUN equity-кривой
+PAPER_EQUITY = 50.0        # стартовый бумажный капитал для DRY_RUN equity-кривой
 JOURNAL_FILE = "journal.jsonl"
 
 # ── Файлы состояния (переживают рестарт) ──────────────────
