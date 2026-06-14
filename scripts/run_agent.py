@@ -126,10 +126,12 @@ class TradingPalantir:
         sig["address"] = meta.get("address") or (scored.address if scored else None)
         if not sig["address"]:
             return
+        open_now = self.positions.open_positions()
+        held = {p.symbol for p in open_now}
         cmc_ctx = await self._cmc_context(sym, scored)
         decision = self.decisions.evaluate_entry(
             signal=sig, scored=scored, regime=self.regime, cmc_ctx=cmc_ctx,
-            open_positions=len(self.positions.open_positions()))
+            open_positions=len(open_now), held_symbols=held)
         if decision.action != "OPEN_POSITION":
             return
         await self._open(decision, sig)

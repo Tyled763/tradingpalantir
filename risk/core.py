@@ -156,6 +156,7 @@ class RuleBook:
     long_only: bool = True                     # спот → шортов нет
     min_trade_notional_usdt: float = 5.0
     max_position_notional_usdt: float = 200.0  # потолок капитала на сделку (тугой стоп → большой размер)
+    one_position_per_symbol: bool = True       # не больше одной открытой позиции на монету
 
     @classmethod
     def load(cls, path: str = "rules.json") -> "RuleBook":

@@ -68,3 +68,17 @@ def test_defensive_halves_risk(gov):
                           open_positions=0)
     assert r["approved"]
     assert r["risk_usdt"] == pytest.approx(base["risk_usdt"] * 0.5)
+
+
+def test_one_position_per_symbol_blocks_held(gov):
+    # монета уже в позиции → reject, даже если всё остальное ок
+    r = gov.approve_entry(symbol="OK", address="0xaaa", entry=100, stop=95,
+                          open_positions=0, held_symbols={"OK"})
+    assert not r["approved"]
+    assert "one-per-symbol" in r["rejection_reason"]
+
+
+def test_one_position_per_symbol_allows_free(gov):
+    r = gov.approve_entry(symbol="OK", address="0xaaa", entry=100, stop=95,
+                          open_positions=0, held_symbols={"OTHER"})
+    assert r["approved"]

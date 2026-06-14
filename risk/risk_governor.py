@@ -31,7 +31,8 @@ class RiskGovernor:
 
     def approve_entry(self, *, symbol: str, address: str, entry: float,
                       stop: float, open_positions: int,
-                      size_factor: float = 1.0) -> Dict:
+                      size_factor: float = 1.0,
+                      held_symbols: Optional[set] = None) -> Dict:
         """Полная проверка входа → {approved, qty, risk_usdt, reasons} либо отказ."""
         reasons = []
 
@@ -40,6 +41,11 @@ class RiskGovernor:
         if allowed is not None and address.lower() not in allowed:
             return self._reject(symbol, f"{symbol} не в allowlist")
         reasons.append("token allowlisted")
+
+        # 1b) одна монета — одна позиция (без пирамидинга/дублей по ТФ)
+        if (getattr(self.rules, "one_position_per_symbol", True)
+                and held_symbols and symbol in held_symbols):
+            return self._reject(symbol, f"{symbol} уже в позиции (one-per-symbol)")
 
         # 2) drawdown guard
         if not self.guard.can_open:

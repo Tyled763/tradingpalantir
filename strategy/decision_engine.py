@@ -40,11 +40,18 @@ class DecisionEngine:
 
     def evaluate_entry(self, *, signal: Dict, scored, regime: Dict,
                        cmc_ctx: Dict, open_positions: int,
+                       held_symbols: Optional[set] = None,
                        evidence_payload: Optional[Dict] = None) -> TradeDecision:
         sym = signal["symbol"]
         self.journal.log(ET.TRADE_SIGNAL_CREATED, symbol=sym,
                          tf=signal["tf"], setup=signal["type"],
                          entry=signal["entry"], stop=signal["stop"])
+
+        # 0) одна монета — одна позиция (ранний reject до LLM-вызова)
+        if held_symbols and sym in held_symbols:
+            self.journal.log(ET.TRADE_REJECTED, symbol=sym,
+                             reason="already in position (one-per-symbol)")
+            return TradeDecision("NO_TRADE", sym, reason="symbol уже в позиции")
 
         # 1) score-гейт (Stage B): вход только если монета armed
         if scored is not None and not scored.armed:
@@ -83,7 +90,7 @@ class DecisionEngine:
         appr = self.governor.approve_entry(
             symbol=sym, address=signal["address"], entry=signal["entry"],
             stop=signal["stop"], open_positions=open_positions,
-            size_factor=g.size_factor)
+            size_factor=g.size_factor, held_symbols=held_symbols)
         if not appr["approved"]:
             return TradeDecision("NO_TRADE", sym,
                                  reason=appr["rejection_reason"],
