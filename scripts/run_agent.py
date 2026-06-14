@@ -246,19 +246,29 @@ class TradingPalantir:
         if in_live_window():
             chk = self.daily.check(self.governor.guard.mode)
             if chk["needs_fallback"]:
-                cand = self.daily.fallback_candidate(self.watchlist)
-                if cand:
-                    self.journal.log(ET.FALLBACK_TRADE, symbol=cand["symbol"],
-                                     note=chk["reason"])
-                    # fallback: минимальный размер через все гейты
-                    row = self.ese.row(cand["symbol"], C.BASE_TF)
-                    if row is not None:
-                        px = float(row["close"])
-                        sig = {"symbol": cand["symbol"], "tf": C.BASE_TF,
-                               "type": "fallback", "direction": "bull",
-                               "entry": px, "stop": px * 0.98, "tp": px * 1.02,
-                               "row": row, "address": cand["address"]}
-                        await self._handle_signal(sig)
+                await self._execute_fallback(chk["reason"])
+
+    async def _execute_fallback(self, reason: str) -> None:
+        """Daily-compliance: микро round-trip по eligible+ликвидному токену (ETH),
+        В ОБХОД LLM/score (это вынужденная сделка), но размер минимальный из резерва.
+        Не занимает позиционный слот. Пишет ORDER_FILLED → счётчик дня закрывается."""
+        tok = next((s for s in C.FALLBACK_TIER1
+                    if s in self.registry.entries and self.registry.entries[s].pool), None)
+        if tok is None:
+            return
+        e = self.registry.entries[tok]
+        self.journal.log(ET.FALLBACK_TRADE, symbol=tok, note=reason,
+                         notional=C.FALLBACK_NOTIONAL)
+        try:
+            r = await self.router.round_trip(address=e.address, usdt=C.FALLBACK_NOTIONAL)
+        except Exception as ex:
+            self.journal.log(ET.TRADE_REJECTED, symbol=tok,
+                             reason=f"fallback round-trip failed: {ex}")
+            return
+        self.journal.log(ET.ORDER_FILLED, symbol=tok, kind="fallback",
+                         tx=r.get("tx"), cost=r.get("cost"))
+        print(f"[TP] FALLBACK round-trip {tok} ${C.FALLBACK_NOTIONAL} "
+              f"({'paper' if C.DRY_RUN else 'LIVE'}) — daily requirement satisfied")
 
     # ── главный цикл ──────────────────────────────────────
     async def run(self) -> None:

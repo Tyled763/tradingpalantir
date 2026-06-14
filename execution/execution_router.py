@@ -20,6 +20,25 @@ class ExecutionRouter:
         self.twak = twak
         self.live = not C.DRY_RUN
 
+    async def round_trip(self, *, address: str, usdt: float) -> Dict:
+        """
+        Daily-compliance микро-сделка: купить токен на usdt → сразу продать.
+        Гарантирует on-chain trade без позиции/слота. Стоимость ≈ газ + fee+slip.
+        paper: симуляция; live: twak swap USDT→token, затем token→USDT.
+        """
+        if not self.live:
+            fee = usdt * C.ROUNDTRIP_FEE + usdt * C.EXPECTED_SLIPPAGE * 2
+            self.paper.realized_pnl -= fee
+            self.paper.fills += 2
+            return {"status": "filled", "kind": "round_trip", "cost": round(fee, 4),
+                    "tx": f"paper-rt-{self.paper.fills}"}
+        buy = await self.twak.swap(round(usdt, 6), C.QUOTE_CCY, address)
+        got = float(str(buy.get("output", "0")).split()[0] or 0)
+        sell = await self.twak.swap(got, address, C.QUOTE_CCY)
+        return {"status": "filled", "kind": "round_trip",
+                "tx": buy.get("txHash") or buy.get("hash"),
+                "tx_sell": sell.get("txHash") or sell.get("hash")}
+
     async def equity(self) -> float:
         if self.live and self.twak is not None:
             try:

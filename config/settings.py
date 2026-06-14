@@ -164,9 +164,10 @@ DD_FLATTEN_PCT   = 18.0       # emergency flatten
 
 # Daily Trade Monitor (мин. 1 сделка/день в live-окне)
 DAILY_MIN_TRADES     = 1
-FALLBACK_WINDOW_H    = 3      # за сколько часов до конца дня UTC включать fallback
+FALLBACK_WINDOW_H    = 4      # за сколько часов до конца дня UTC включать fallback
 FALLBACK_TIER1       = ["ETH", "WBNB", "LINK"]   # минимальный размер, со стопом
-FALLBACK_NOTIONAL    = 6.0    # USDT (чуть выше min_trade_notional)
+FALLBACK_NOTIONAL    = 5.0    # USDT на ежедневный compliance round-trip
+FALLBACK_TOKEN       = "WBNB"   # гарантированно ликвидный токен для daily round-trip
 LIVE_WINDOW          = ("2026-06-22", "2026-06-28")
 
 # Token Risk Firewall

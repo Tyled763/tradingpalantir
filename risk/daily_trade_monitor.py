@@ -7,6 +7,7 @@
 # =========================
 from __future__ import annotations
 
+import os
 import time
 from datetime import datetime, timezone
 from typing import Dict, Optional
@@ -22,6 +23,8 @@ def _day_start_utc(ts: Optional[float] = None) -> float:
 
 
 def in_live_window(ts: Optional[float] = None) -> bool:
+    if os.environ.get("TP_FORCE_LIVE_WINDOW") == "1":   # симуляция окна до 22.06
+        return True
     d = datetime.fromtimestamp(ts or time.time(), tz=timezone.utc).date().isoformat()
     return C.LIVE_WINDOW[0] <= d <= C.LIVE_WINDOW[1]
 

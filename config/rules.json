@@ -135,6 +135,6 @@
   "max_daily_drawdown_pct": 8.0,
   "long_only": true,
   "min_trade_notional_usdt": 5.0,
-  "max_position_notional_usdt": 48.0,
+  "max_position_notional_usdt": 44.0,
   "one_position_per_symbol": true
 }
