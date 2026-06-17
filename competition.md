@@ -10,10 +10,11 @@ Track 1: Autonomous Trading Agents.
 | Sign & process transactions through Trust Wallet Agent Kit | twak (`@trustwallet/cli`) is the **sole** execution layer: swaps, SL automations, portfolio, registration, ERC-8004 | `execution/twak_adapter.py` |
 | Register agent wallet on-chain before live window | Registered 2026-06-09 | [`0xd75091…`](https://bscscan.com/tx/0xd75091adb91e58ac97523311057b96254b752ef6ef9abddfb4649b52d403780e) |
 | Public repo + agent address on DoraHacks | This repository; wallet `0xAaD844634247B124Eb8cA93378fF7E3608E7a290` | — |
-| Trade only eligible BEP-20 tokens | Hard allowlist of 128 eligible contract addresses enforced by Risk Governor on every entry | `config/rules.json`, `risk/risk_governor.py`, `tests/test_risk_governor.py` |
+| Trade only eligible BEP-20 tokens | Hard allowlist of 128 traded contract addresses (of the 149 eligible; stablecoins excluded) enforced by Risk Governor on every entry | `config/rules.json`, `risk/risk_governor.py`, `tests/test_risk_governor.py` |
+| Hold a non-zero balance of in-scope assets at competition start | Agent wallet funded with in-scope assets (~$50 USDT + gas) before the 2026-06-22 open | wallet `0xAaD8…a290` |
 | ≥ 1 trade per day during the live window | DailyTradeMonitor: tracks fills per UTC day; proposes a minimal Tier-1 fallback trade in the final window hours — always through all risk gates, never when drawdown guard is active | `risk/daily_trade_monitor.py`, tests |
-| Avoid excessive drawdown | Tiered drawdown guard: 8% → defensive (risk ×0.5), 12% → block new trades, 18% → emergency flatten; risk per trade $2.5, notional cap $45, max 2 concurrent positions | `risk/drawdown_guard.py`, `config/rules.json` |
-| Reproducible setup / demo | README quick-start, `.env.example`, 30 unit tests, replay script, Streamlit dashboard | `README.md` |
+| Avoid excessive drawdown | Tiered drawdown guard: 8% → defensive (risk ×0.5), 12% → block new trades, 18% → emergency flatten; risk per trade $5, notional cap $44, max 1 concurrent position, one-position-per-symbol | `risk/drawdown_guard.py`, `config/rules.json` |
+| Reproducible setup / demo | README quick-start, `.env.example`, 49 unit tests, replay script, Streamlit dashboard | `README.md` |
 | On-chain proof of activity | Registration + ERC-8004 mint + validated round-trip trade (links above) | — |
 
 ## Bonus tracks

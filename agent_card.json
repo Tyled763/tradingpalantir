@@ -1,7 +1,7 @@
 {
   "type": "AgentCard",
   "name": "TradingPalantir",
-  "description": "Palantir-style AI command center for autonomous spot trading on BNB Smart Chain. Routes CoinMarketCap data and skill-equivalents into an evidence pipeline, scores all eligible tokens 1-100, arms only high-conviction candidates (score >= 90), detects entries with a proprietary FVG/VWAP/multi-timeframe-EMA strategy, manages positions through adaptive trendflex ride-mode exits with R/ATR protective stops, and executes through Trust Wallet Agent Kit only after deterministic Risk Governor approval. LLMs (Claude two-pass: analyst + independent risk reviewer) classify and explain — they never execute.",
+  "description": "Palantir-style AI command center for autonomous spot trading on BNB Smart Chain. Routes CoinMarketCap data and skill-equivalents into an evidence pipeline, scores all 128 traded tokens 1-100, arms only candidates above an adaptive market-regime quality floor (top 12), detects entries with a proprietary FVG/VWAP/multi-timeframe-EMA strategy, manages positions through adaptive trendflex ride-mode exits with R/ATR protective stops, and executes through Trust Wallet Agent Kit only after deterministic Risk Governor approval. LLMs (Claude two-pass: analyst + independent risk reviewer) classify and explain — they never execute.",
   "version": "1.0.0",
   "wallet": {
     "chain": "bsc",

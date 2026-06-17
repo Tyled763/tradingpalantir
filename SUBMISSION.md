@@ -4,22 +4,26 @@
 TradingPalantir
 
 ## One-liner
-A Palantir-style AI command center for autonomous spot trading on BNB Chain: scores all 128 eligible tokens 1-100, arms only high-conviction candidates, enters on a proprietary FVG/VWAP/EMA strategy, rides confirmed trends with adaptive Trendflex exits, and executes through Trust Wallet Agent Kit only after deterministic risk approval.
+A Palantir-style AI command center for autonomous spot trading on BNB Chain: scores all 128 traded BEP-20 tokens 1-100, arms only high-conviction candidates, enters on a proprietary FVG/VWAP/EMA strategy, rides confirmed trends with adaptive Trendflex exits, and executes through Trust Wallet Agent Kit only after deterministic risk approval.
 
 ## Description
-Most trading bots ask an LLM whether to buy. TradingPalantir doesn't.
+**Most AI trading agents are an LLM with a wallet — they hallucinate trades, chase pumps, and blow up.** An LLM asked "should I buy?" always finds a reason to say yes. TradingPalantir inverts that: a deterministic engine decides and a deterministic Risk Governor pulls the trigger; the LLM is a constrained advisor that can only confirm, veto, or cut size.
 
 **The decision cycle:**
-1. **Score everything.** Every rescreen cycle the agent scores all 128 eligible BEP-20 tokens (1-100) using CoinMarketCap data: volume/liquidity, momentum, social buzz (CMC trending narratives + news), technical breakout-readiness and EMA trend structure from on-chain candles. The score breakdown for every coin is journaled — full transparency.
-2. **Arm only the best.** Top-20 watchlist; only coins above an adaptive threshold (85-92 depending on the market regime derived from CMC global + derivatives metrics) become "armed". A token-safety firewall (honeypot/liquidity checks via TWAK) caps anything suspicious.
-3. **Hunt the setup.** Armed coins are monitored bar-by-bar across 4 timeframes for a proprietary deterministic entry: FVG + session VWAP + multi-timeframe EMA alignment + Williams-fractal stop.
+1. **Score everything.** Every rescreen cycle the agent scores all 128 traded BEP-20 tokens (1-100, from the 149 eligible with stablecoins excluded) using CoinMarketCap data: volume/liquidity, momentum, social buzz (CMC trending narratives + news), technical breakout-readiness and EMA trend structure from on-chain candles. The score breakdown for every coin is journaled — full transparency.
+2. **Arm only the best.** Top-20 watchlist; only coins above an adaptive quality floor (70/74/80 depending on the market regime derived from CMC global + derivatives metrics) become "armed", capped at the top 12 for focus and rate-limit. A token-safety firewall (honeypot/liquidity checks via TWAK) caps anything suspicious.
+3. **Hunt the setup.** Armed coins are monitored bar-by-bar for a proprietary deterministic entry: FVG + session VWAP + multi-timeframe EMA alignment + Williams-fractal stop. FVG entries are taken on the 30m and 1H timeframes only (lower timeframes are noise).
 4. **Confirm, don't decide.** On a signal, a two-pass Claude gateway (analyst proposes → independent risk reviewer challenges, fed with CMC news/social/derivatives evidence) can only confirm, veto, or cut size — capability-gated, it can never increase risk or execute.
 5. **Deterministic final authority.** Risk Governor enforces the eligible-token allowlist, position limits, notional caps, and a tiered drawdown guard (8% → defensive, 12% → block, 18% → emergency flatten). A DailyTradeMonitor guarantees the ≥1 trade/day competition rule without ever bypassing risk gates.
 6. **Don't cut the winner.** The signature edge: positions start with a fixed 3R take-profit, but once the custom OscMatrix indicator (Money Flow + Ehlers Trendflex) confirms the trend, the agent latches "ride mode" — the TP is removed and the position is held while Trendflex > 0, protected by R-multiple stop progression (+1R→breakeven, +2R→+1R) and an ATR trail. Exit on Trendflex flip.
 
+**Sponsor stack — all three layers.** CoinMarketCap drives coin selection (Pro API batch quotes + CMC MCP trending/news/global/derivatives + native skill-equivalents). Trust Wallet Agent Kit is the sole execution layer (swaps, stop-loss automations, portfolio, on-chain registration, ERC-8004). The BNB AI Agent SDK provides the on-chain ERC-8004 identity (agentId 132867).
+
+**Why conservative — by design.** TradingPalantir runs a fixed $50 spot account: $5 risk per trade, one concurrent position, $44 notional cap, one-position-per-symbol, plus the tiered drawdown guard. Track 1 gates submissions on max drawdown and rule compliance — our bet is survivability. Most agents in a week-long live window blow through the drawdown cap or break a rule and get disqualified; this one is built to still be standing on day seven with every rule intact.
+
 **Execution** is 100% Trust Wallet Agent Kit (self-custody): swaps, stop-loss automations, portfolio, on-chain competition registration, and an ERC-8004 on-chain agent identity.
 
-Runs 24/7 on a VPS under systemd, with a Streamlit command center, SQLite+JSONL decision journal, 35 unit tests, and a historical replay harness.
+Runs 24/7 on a VPS under systemd, with a Streamlit command center, SQLite+JSONL decision journal, 49 unit tests, and a historical replay harness.
 
 ## Links
 - Repo: https://github.com/Tyled763/tradingpalantir
