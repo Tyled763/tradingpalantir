@@ -13,7 +13,7 @@ Track 1: Autonomous Trading Agents.
 | Trade only eligible BEP-20 tokens | Hard allowlist of 128 traded contract addresses (of the 149 eligible; stablecoins excluded) enforced by Risk Governor on every entry | `config/rules.json`, `risk/risk_governor.py`, `tests/test_risk_governor.py` |
 | Hold a non-zero balance of in-scope assets at competition start | Agent wallet funded with in-scope assets (~$50 USDT + gas) before the 2026-06-22 open | wallet `0xAaD8…a290` |
 | ≥ 1 trade per day during the live window | DailyTradeMonitor: tracks fills per UTC day; proposes a minimal Tier-1 fallback trade in the final window hours — always through all risk gates, never when drawdown guard is active | `risk/daily_trade_monitor.py`, tests |
-| Avoid excessive drawdown | Tiered drawdown guard: 8% → defensive (risk ×0.5), 12% → block new trades, 18% → emergency flatten; risk per trade $5, notional cap $44, max 1 concurrent position, one-position-per-symbol | `risk/drawdown_guard.py`, `config/rules.json` |
+| Avoid excessive drawdown | Tiered drawdown guard: 12% → defensive (risk & size ×0.5), 18% → block new trades, 25% → emergency flatten; up to 2 concurrent positions, each ~50% of the book ($22.5 notional cap), one-position-per-symbol | `risk/drawdown_guard.py`, `config/rules.json` |
 | Reproducible setup / demo | README quick-start, `.env.example`, 49 unit tests, replay script, Streamlit dashboard | `README.md` |
 | On-chain proof of activity | Registration + ERC-8004 mint + validated round-trip trade (links above) | — |
 

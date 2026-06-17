@@ -69,11 +69,13 @@ class RiskGovernor:
         qty = calc_size_spot(entry, stop, risk_usdt,
                              fee=C.ROUNDTRIP_FEE, slippage=C.EXPECTED_SLIPPAGE)
         notion = notional(entry, qty)
-        cap = self.rules.max_position_notional_usdt
+        # cap = половина книги; в defensive (risk_mult=0.5) дополнительно ужимаем
+        # концентрацию вдвое (иначе при notional-cap-binds defensive был бы no-op)
+        cap = self.rules.max_position_notional_usdt * risk_mult
         if notion > cap:
             qty = cap / entry
             notion = notional(entry, qty)
-            reasons.append(f"ноционал срезан до cap ${cap}")
+            reasons.append(f"ноционал срезан до cap ${cap:g}")
         if notion < self.rules.min_trade_notional_usdt:
             return self._reject(symbol, f"ноционал ${notion:.2f} < min ${self.rules.min_trade_notional_usdt}")
 

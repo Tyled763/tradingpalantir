@@ -120,7 +120,7 @@ ROUNDTRIP_FEE     = 0.0025   # суммарная комиссия вход+вы
 EXPECTED_SLIPPAGE = 0.001    # ожидаемое проскальзывание на сторону (для sizing)
 
 # ── Риск ──────────────────────────────────────────────────
-RISK_USDT = 2.5              # риск на сделку в USDT (капитал ~$50-100; кап ноционала $45 — см. rules.json)
+RISK_USDT = 2.5              # ТОЛЬКО для scripts/replay.py (офлайн-бэктест); live-sizing берётся из config/rules.json
 
 # ── LLM-надзиратель (Claude) ──────────────────────────────
 BRAIN_MODEL = "claude-opus-4-8"   # модель решений (opus = качество; signals редкие)
@@ -163,9 +163,11 @@ MONITOR_HYST = 6.0            # гистерезис: держим монету 
 RESCREEN_INTERVAL_SEC = 1500  # пересчёт скоринга (25 мин)
 
 # Drawdown Guard (ступени, % дневной просадки)
-DD_DEFENSIVE_PCT = 8.0        # risk x0.5
-DD_BLOCK_PCT     = 12.0       # блок новых входов
-DD_FLATTEN_PCT   = 18.0       # emergency flatten
+# Ослаблены под концентрированный sizing (2×~50%): даём агрессии дышать,
+# жёсткий flatten остаётся катастрофа-тормозом против DQ по drawdown-cap.
+DD_DEFENSIVE_PCT = 12.0       # risk x0.5 (+ notional cap x0.5)
+DD_BLOCK_PCT     = 18.0       # блок новых входов
+DD_FLATTEN_PCT   = 25.0       # emergency flatten
 
 # Daily Trade Monitor (мин. 1 сделка/день в live-окне)
 DAILY_MIN_TRADES     = 1

@@ -54,7 +54,7 @@ def test_size_factor_only_reduces(gov):
 
 
 def test_drawdown_block_stops_entries(gov):
-    gov.update_drawdown(13.0)   # >= DD_BLOCK_PCT
+    gov.update_drawdown(19.0)   # >= DD_BLOCK_PCT (18)
     r = gov.approve_entry(symbol="OK", address="0xaaa", entry=100, stop=98,
                           open_positions=0)
     assert not r["approved"]
@@ -63,7 +63,7 @@ def test_drawdown_block_stops_entries(gov):
 def test_defensive_halves_risk(gov):
     base = gov.approve_entry(symbol="OK", address="0xaaa", entry=100, stop=95,
                              open_positions=0)
-    gov.update_drawdown(9.0)    # defensive
+    gov.update_drawdown(13.0)   # defensive (>= 12, < 18)
     r = gov.approve_entry(symbol="OK", address="0xaaa", entry=100, stop=95,
                           open_positions=0)
     assert r["approved"]
@@ -82,3 +82,14 @@ def test_one_position_per_symbol_allows_free(gov):
     r = gov.approve_entry(symbol="OK", address="0xaaa", entry=100, stop=95,
                           open_positions=0, held_symbols={"OTHER"})
     assert r["approved"]
+
+
+def test_defensive_halves_notional_cap(gov):
+    # тугой стоп → ноционал упирается в cap; defensive должен ужать cap вдвое
+    base = gov.approve_entry(symbol="OK", address="0xaaa", entry=100, stop=99.8,
+                             open_positions=0)
+    gov.update_drawdown(13.0)   # defensive
+    r = gov.approve_entry(symbol="OK", address="0xaaa", entry=100, stop=99.8,
+                          open_positions=0)
+    assert r["approved"]
+    assert r["notional"] == pytest.approx(base["notional"] * 0.5, rel=1e-3)

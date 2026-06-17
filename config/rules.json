@@ -130,11 +130,11 @@
     "0x0c8382719ef242cae2247e4decb2891fbf699818"
   ],
   "blocked_tokens": [],
-  "max_risk_per_trade_usdt": 5.0,
-  "max_concurrent_positions": 1,
-  "max_daily_drawdown_pct": 8.0,
+  "max_risk_per_trade_usdt": 12.0,
+  "max_concurrent_positions": 2,
+  "max_daily_drawdown_pct": 25.0,
   "long_only": true,
   "min_trade_notional_usdt": 5.0,
-  "max_position_notional_usdt": 44.0,
+  "max_position_notional_usdt": 22.5,
   "one_position_per_symbol": true
 }

@@ -82,7 +82,7 @@ intelligence/   market regime · derivatives pressure · opportunity radar (1-10
 strategy/       proprietary entry engine (FVG/VWAP/EMA, untouched core)
                 + OscMatrix (MoneyFlow + Trendflex) + decision engine
 exit/           adaptive exit manager (ride mode, R/ATR protective stops)
-risk/           Risk Governor (final authority) · tiered drawdown guard (8/12/18%)
+risk/           Risk Governor (final authority) · tiered drawdown guard (12/18/25%)
                 daily trade monitor (≥1 trade/day, risk-gated fallback)
 llm/            Claude two-pass: analyst proposes → independent reviewer challenges
                 (capability-gated: can only reduce risk, never execute)
@@ -97,9 +97,11 @@ dashboard/      Streamlit command center
 - Every trade has a stop-loss before entry; no averaging down; tiered drawdown guard (defensive → block → emergency flatten).
 - Paper mode validated before any live execution; full journal of every decision.
 
-## Why so conservative? (by design)
+## Why concentrated? (asymmetric, by design)
 
-The agent runs a **fixed $50 spot account** (no leverage, no deposits). Risk is deliberately tight: **$5 risk per trade, one concurrent position, $44 notional cap, one-position-per-symbol**, on top of a tiered drawdown guard (**8% → defensive · 12% → block new trades · 18% → emergency flatten**). Track 1 is judged with a max-drawdown cap and rule-compliance as gates — our bet is **survivability**: most agents in a week-long live window blow through the drawdown cap or break a rule and get disqualified. TradingPalantir is built to still be standing on day seven, every rule intact.
+The agent runs a **fixed $50 spot account** (no leverage, no deposits) and plays to win the ranking, not to place mid-pack. Track 1 is ranked by **total return**, with max drawdown only as a gate — so capital is deployed with conviction: **up to 2 concurrent positions, each ~50% of the book** (≈$22.5 notional cap), on different symbols (one-position-per-symbol). Sizing is notional-driven — a raised risk budget makes the notional cap the binding constraint, so each position is ~half the book regardless of stop width (effective risk per trade scales with the stop, typically $1–6).
+
+The downside floor is a **tiered drawdown guard — 12% → defensive (risk & position size halved) · 18% → block new entries · 25% → emergency flatten** — which keeps the agent under the competition's drawdown cap, while ~$5 is always reserved so the mandatory ≥1-trade-per-day rule can never be missed. Concentrated upside, hard floor under the downside.
 
 > **Note on parameters.** All risk/sizing numbers reflect a fixed $50 spot account and live in [`config/rules.json`](config/rules.json) and [`config/settings.py`](config/settings.py) — tune them there, no code changes required.
 
