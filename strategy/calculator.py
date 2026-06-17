@@ -1,6 +1,6 @@
 # =========================
 # calculator.py — Signal Bot v4
-# Bar-by-bar: FVG + VWAP (quote vol) + EMA 144 + TP
+# Bar-by-bar: FVG + VWAP (quote vol) + EMA (EMA_PERIOD) + TP
 # =========================
 from __future__ import annotations
 
@@ -34,7 +34,7 @@ class BarState:
     prev_vwap:       float = np.nan
     prev_vwap_upper: float = np.nan
     prev_vwap_lower: float = np.nan
-    # EMA 144 (prev_ema = EMA последнего обработанного бара)
+    # EMA (EMA_PERIOD; prev_ema = EMA последнего обработанного бара)
     prev_ema: float = np.nan
     ema_bars: int   = 0
 
@@ -137,7 +137,7 @@ def _process_bar(bar: Dict, state: BarState, bar_idx: int) -> Dict:
     state.prev_vwap_upper = vwap_upper
     state.prev_vwap_lower = vwap_lower
 
-    # ── EMA 144 (TV-formula: close-init, no SMA) ─────────
+    # ── EMA (EMA_PERIOD; TV-formula: close-init, no SMA) ─────────
     # Точная формула TradingView ta.ema():
     #   EMA[0] = close[0]                          (первая цена)
     #   EMA[t] = α × close[t] + (1-α) × EMA[t-1]   (рекурсия с t=1)
