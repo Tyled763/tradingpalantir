@@ -121,6 +121,8 @@ class EntrySignalEngine:
     def _detect(self, sym: str, tf: str, row: Dict) -> List[Dict]:
         if not (_finite(row.get("bull_fvg")) or _finite(row.get("bear_fvg"))):
             return []
+        if tf not in C.FVG_ENTRY_TIMEFRAMES:        # вход только с 30m/1H FVG
+            return []
         bar_ms = _bar_ms(row)
         ema_prev: Dict[str, float] = {}
         for etf in C.TIMEFRAMES:

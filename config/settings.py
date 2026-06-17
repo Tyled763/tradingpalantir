@@ -9,6 +9,11 @@ from typing import Dict
 SYMBOLS    = ["BTC-USDT-SWAP", "ETH-USDT-SWAP"]
 TIMEFRAMES = ["5m", "15m", "30m", "1H"]
 
+# ТФ, на которых FVG-сетап порождает торговый вход.
+# Все 4 ТФ в TIMEFRAMES по-прежнему используются для мульти-ТФ EMA-confluence;
+# здесь ограничивается только ТФ детекции самого входного FVG (5m/15m — шум).
+FVG_ENTRY_TIMEFRAMES = ["30m", "1H"]
+
 # ── OKX WS channel names ──────────────────────────────────
 TF_TO_CHANNEL: Dict[str, str] = {
     "5m":  "candle5m",
