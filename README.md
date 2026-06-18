@@ -47,6 +47,7 @@ Stage B  ARM THE BEST          top-20 watchlist → ARMED set = coins above an a
                                the top 12 (rate-limit + focus)
 Stage C  HUNT THE SETUP        bar-by-bar monitoring of armed coins only →
                                proprietary FVG + VWAP + multi-timeframe-EMA entry,
+                               confirmed by MFI money-flow (OscMatrix),
                                FVG entries taken on 30m / 1H only (5m/15m = noise)
 ENTRY    score gate → Claude analyst → independent Claude reviewer → Risk Governor
 MANAGE   normal mode: fixed TP (3R) + fractal stop
@@ -60,7 +61,7 @@ flowchart LR
     CMC[CoinMarketCap<br/>Pro API + MCP] --> A
     GT[GeckoTerminal<br/>OHLCV] --> C
     A[Stage A<br/>score all 128 → 1..100] --> B[Stage B<br/>arm top-12 over<br/>regime floor]
-    B --> C[Stage C<br/>FVG/VWAP/EMA entry<br/>30m / 1H]
+    B --> C[Stage C<br/>FVG/VWAP/EMA + MFI<br/>30m / 1H]
     C --> L[Claude two-pass<br/>analyst → reviewer<br/>confirm · veto · cut size]
     L --> R{Risk Governor<br/>allowlist · caps ·<br/>drawdown guard}
     R -->|approved| X[Trust Wallet Agent Kit<br/>swap + SL automation]
@@ -80,7 +81,8 @@ cmc/            clients + skill-equivalents (native replicas of CMC Skills)
 intelligence/   market regime · derivatives pressure · opportunity radar (1-100)
                 token risk firewall · evidence items (honest partial/blocked)
 strategy/       proprietary entry engine (FVG/VWAP/EMA, untouched core)
-                + OscMatrix (MoneyFlow + Trendflex) + decision engine
+                + OscMatrix (MoneyFlow + Trendflex) — MFI gate confirms entries,
+                  Trendflex drives ride-mode exits — + decision engine
 exit/           adaptive exit manager (ride mode, R/ATR protective stops)
 risk/           Risk Governor (final authority) · tiered drawdown guard (12/18/25%)
                 daily trade monitor (≥1 trade/day, risk-gated fallback)

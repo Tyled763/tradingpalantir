@@ -17,6 +17,7 @@
     "token-scoring-1-100",
     "three-stage-funnel-screening",
     "fvg-vwap-ema-entry-signals",
+    "mfi-money-flow-entry-confirmation",
     "adaptive-trendflex-ride-exits",
     "r-multiple-atr-protective-stops",
     "deterministic-risk-governor",
