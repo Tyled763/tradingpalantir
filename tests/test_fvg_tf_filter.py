@@ -39,6 +39,8 @@ def _breakout_row():
         "vwap_prev": 100.0,
         "vwap_upper_prev": 100.0,
         "vwap_lower_prev": 100.0,
+        # MFI-гейт проходит (изолируем тест ТФ-фильтра от MFI-подтверждения)
+        "mf_bull": True, "money_flow": 45.0, "mf_raw": 55.0, "mf_up_th": 60.0,
     }
 
 

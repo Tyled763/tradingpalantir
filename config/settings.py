@@ -193,6 +193,11 @@ R_LOCK_TRIGGER  = 2.0         # +2R -> стоп на +1R
 MIN_STOP_ATR_MULT   = 0.8     # мин. дистанция стопа = 0.8 x ATR(ТФ сигнала)
 MIN_STOP_PCT_FALLBACK = 0.005 # 0.5% от входа, если ATR недоступен (покрывает 0%-вырожд.)
 
+# MFI-гейт подтверждения входа (читает OscMatrix-поля signal-row, ТФ сигнала)
+MFI_ENTRY_GATE = True          # вкл/выкл (False → вход как раньше, без MFI)
+MFI_GATE_MODE  = "mf_bull"     # "mf_bull" | "mf_raw_50" | "above_upper_band"
+MFI_RAW_MIN    = 50.0          # порог для режима mf_raw_50
+
 # LLM two-pass
 REVIEWER_ENABLED = True
 

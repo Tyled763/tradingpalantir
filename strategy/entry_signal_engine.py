@@ -118,6 +118,21 @@ class EntrySignalEngine:
         self.next_fetch[(sym, tf)] = now_ms / 1000 + tf_ms / 1000
         return added
 
+    def _mfi_confirms(self, row: Dict) -> bool:
+        """MFI-гейт подтверждения притока (читает OscMatrix-поля signal-row)."""
+        if not C.MFI_ENTRY_GATE:
+            return True
+        mode = C.MFI_GATE_MODE
+        if mode == "mf_bull":
+            return bool(row.get("mf_bull"))
+        if mode == "mf_raw_50":
+            mf = row.get("mf_raw")
+            return mf is not None and mf >= C.MFI_RAW_MIN
+        if mode == "above_upper_band":
+            mf, up = row.get("money_flow"), row.get("mf_up_th")
+            return _finite(mf) and _finite(up) and mf >= up
+        return True                                  # неизвестный режим → не блокируем
+
     def _detect(self, sym: str, tf: str, row: Dict) -> List[Dict]:
         if not (_finite(row.get("bull_fvg")) or _finite(row.get("bear_fvg"))):
             return []
@@ -131,9 +146,23 @@ class EntrySignalEngine:
             if v is None:
                 return []
             ema_prev[etf] = v
+        mfi_ok = self._mfi_confirms(row)            # один раз на бар
+        mfi_logged = False
         out = []
         for sig in check_all_signals(row, ema_prev):
             if sig["direction"] != "bull":          # спот long-only
+                continue
+            # ── MFI-гейт: вход только при подтверждённом притоке ──
+            if not mfi_ok:
+                if self.journal is not None and not mfi_logged:
+                    self.journal.log(ET.MFI_GATE_SKIP, symbol=sym, tf=tf,
+                                     mode=C.MFI_GATE_MODE,
+                                     money_flow=round(row["money_flow"], 2)
+                                     if _finite(row.get("money_flow")) else None,
+                                     mf_raw=round(row["mf_raw"], 2)
+                                     if _finite(row.get("mf_raw")) else None,
+                                     mf_bull=bool(row.get("mf_bull")))
+                    mfi_logged = True
                 continue
             entry = float(row["close"])
             bp = self.proc[(sym, tf)]
