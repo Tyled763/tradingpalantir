@@ -5,6 +5,7 @@
 # =========================
 from __future__ import annotations
 
+import asyncio
 import json
 import os
 import sqlite3
@@ -19,6 +20,7 @@ import streamlit as st
 import streamlit.components.v1 as components
 
 import config as C
+from execution.twak_adapter import TwakExec
 
 st.set_page_config(page_title="TradingPalantir", layout="wide", page_icon="🔮",
                    initial_sidebar_state="collapsed")
@@ -26,6 +28,32 @@ st.set_page_config(page_title="TradingPalantir", layout="wide", page_icon="🔮"
 DB = C.JOURNAL_DB
 POS = C.POSITIONS_FILE
 REFRESH_SEC = 20
+
+
+def _asset_usd(a):
+    return float(a.get("usdValue") or a.get("usd") or a.get("valueUsd")
+                 or a.get("value") or 0.0)
+
+
+@st.cache_data(ttl=30)
+def live_wallet_usd():
+    """Реальный баланс кошелька на BSC в USD через twak (кэш 30с). None при ошибке.
+
+    twak wallet portfolio → list активов по всем сетям; берём только chain==bsc
+    (конкурс на BSC), ключ суммы — usdValue.
+    """
+    try:
+        p = asyncio.run(TwakExec(chain="bsc").portfolio())
+    except Exception:
+        return None
+    if isinstance(p, list):
+        v = sum(_asset_usd(a) for a in p
+                if isinstance(a, dict) and a.get("chain") == "bsc")
+    elif isinstance(p, dict):
+        v = float(p.get("totalUsd") or p.get("total") or 0.0)
+    else:
+        v = 0.0
+    return v if v > 0 else None
 
 # ── палитра ───────────────────────────────────────────────
 CYAN, VIOLET = "#22d3ee", "#818cf8"
@@ -146,7 +174,17 @@ if os.path.exists(POS):
 closed = [p for p in positions if p.get("realized_pnl") is not None]
 open_pos = [p for p in positions if p.get("state") == "open"]
 realized = sum(p.get("realized_pnl") or 0 for p in closed)
-equity = C.PAPER_EQUITY + realized
+if C.DRY_RUN:
+    equity = C.PAPER_EQUITY + realized
+    eq_label = "Equity (paper)"
+    eq_sub = f"{realized:+.3f} realized · {len(closed)} closed"
+    eq_color = GREEN if realized >= 0 else RED
+else:
+    live_usd = live_wallet_usd()
+    equity = live_usd if live_usd is not None else (C.PAPER_EQUITY + realized)
+    eq_label = "Equity (live)"
+    eq_sub = "real wallet · BSC" if live_usd is not None else "wallet read failed — retry"
+    eq_color = GREEN
 n_fills = count_since("ORDER_FILLED", day0)
 n_setups = count_since("TRADE_SIGNAL_CREATED", day0)
 n_skips = count_since("TIGHT_STOP_SKIP", day0)
@@ -178,9 +216,7 @@ kpi(k[1], "Risk / DD guard", gm.replace("_", " "),
     f"{dd_ev.get('dd_pct', 0)}% drawdown", GUARD_COLOR.get(gm, GREEN))
 kpi(k[2], "Armed set", len(armed),
     " ".join(a[0] for a in armed[:3]) if armed else f"waiting ≥{thr}", CYAN)
-pnl_c = GREEN if realized >= 0 else RED
-kpi(k[3], "Equity (paper)", f"${equity:,.2f}",
-    f"{realized:+.3f} realized · {len(closed)} closed", pnl_c)
+kpi(k[3], eq_label, f"${equity:,.2f}", eq_sub, eq_color)
 kpi(k[4], "Open positions", len(open_pos),
     f"{n_fills} fills today", VIOLET if open_pos else SLATE)
 kpi(k[5], "Setups today", n_setups,
