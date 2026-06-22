@@ -35,25 +35,49 @@ def _asset_usd(a):
                  or a.get("value") or 0.0)
 
 
-@st.cache_data(ttl=30)
-def live_wallet_usd():
-    """Реальный баланс кошелька на BSC в USD через twak (кэш 30с). None при ошибке.
+_STABLES = set(getattr(C, "STABLE_SYMBOLS", {"USDT", "USDC", "BUSD", "FDUSD", "DAI"}))
 
-    twak wallet portfolio → list активов по всем сетям; берём только chain==bsc
-    (конкурс на BSC), ключ суммы — usdValue.
+
+@st.cache_data(ttl=30)
+def live_equity(open_key):
+    """Надёжная live-equity на BSC.
+
+    twak `wallet portfolio` отдаёт ЧАСТИЧНЫЕ данные на каждый вызов (то $0, то
+    только ETH) и не индексирует тонкие токены (напр. BILL). Поэтому:
+      • делаем несколько вызовов и берём UNION (max usd по символу) → кэш + газ +
+        индексируемые токены по mark-to-market;
+      • открытые позиции, которые twak НЕ показывает, добавляем по cost-basis из
+        нашего реестра (qty×entry).
+    open_key: tuple((symbol, qty, entry), …) открытых позиций — cache-key + fallback.
+    Возвращает (equity, cash_usd, positions_usd) либо None при полном отказе.
     """
-    try:
-        p = asyncio.run(TwakExec(chain="bsc").portfolio())
-    except Exception:
+    union = {}                       # symbol -> usd (max по вызовам)
+    for _ in range(5):
+        try:
+            p = asyncio.run(TwakExec(chain="bsc").portfolio())
+        except Exception:
+            continue
+        if isinstance(p, list):
+            for a in p:
+                if isinstance(a, dict) and a.get("chain") == "bsc":
+                    u = _asset_usd(a)
+                    if u > 0:
+                        sym = a.get("symbol")
+                        union[sym] = max(union.get(sym, 0.0), u)
+        if union.keys() & _STABLES and len(union) >= 2:   # достаточно полный ответ
+            break
+    if not union and not open_key:
         return None
-    if isinstance(p, list):
-        v = sum(_asset_usd(a) for a in p
-                if isinstance(a, dict) and a.get("chain") == "bsc")
-    elif isinstance(p, dict):
-        v = float(p.get("totalUsd") or p.get("total") or 0.0)
-    else:
-        v = 0.0
-    return v if v > 0 else None
+
+    indexed_total = sum(union.values())
+    union_syms = set(union)
+    positions_indexed = sum(union[s] for s, _, _ in open_key if s in union_syms)
+    positions_unindexed = sum(qty * entry for s, qty, entry in open_key
+                              if s not in union_syms)
+    equity = indexed_total + positions_unindexed
+    cash = indexed_total - positions_indexed        # стейблы + газ (не позиции)
+    positions_usd = positions_indexed + positions_unindexed
+    return round(equity, 2), round(cash, 2), round(positions_usd, 2)
 
 # ── палитра ───────────────────────────────────────────────
 CYAN, VIOLET = "#22d3ee", "#818cf8"
@@ -180,11 +204,18 @@ if C.DRY_RUN:
     eq_sub = f"{realized:+.3f} realized · {len(closed)} closed"
     eq_color = GREEN if realized >= 0 else RED
 else:
-    live_usd = live_wallet_usd()
-    equity = live_usd if live_usd is not None else (C.PAPER_EQUITY + realized)
+    open_key = tuple((p.get("symbol"), float(p.get("qty") or 0), float(p.get("entry") or 0))
+                     for p in open_pos)
+    res = live_equity(open_key)
     eq_label = "Equity (live)"
-    eq_sub = "real wallet · BSC" if live_usd is not None else "wallet read failed — retry"
-    eq_color = GREEN
+    if res is not None:
+        equity, cash_usd, pos_usd = res
+        eq_sub = f"${cash_usd:.2f} free · ${pos_usd:.2f} in {len(open_pos)} pos"
+        eq_color = GREEN
+    else:
+        equity = C.PAPER_EQUITY + realized
+        eq_sub = "wallet read failed — retry"
+        eq_color = AMBER
 n_fills = count_since("ORDER_FILLED", day0)
 n_setups = count_since("TRADE_SIGNAL_CREATED", day0)
 n_skips = count_since("TIGHT_STOP_SKIP", day0)
